@@ -45,10 +45,6 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
     }
   }
 
-  function handleKeyDown(e: React.KeyboardEvent) {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInputRef.current?.click(); }
-  }
-
   const fileValue = value?.kind === 'file' ? value.file : null;
   const urlValue  = value?.kind === 'url'  ? value       : null;
 
@@ -58,17 +54,17 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#e6ebf1] bg-white shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-card)] shadow-sm transition-colors duration-200">
       {/* Tabs */}
-      <div className="flex border-b border-[#e6ebf1] bg-[#f6f9fc] p-1 gap-1">
+      <div className="flex gap-1 border-b border-[var(--cf-border)] bg-[var(--cf-section)] p-1">
         {(['file', 'url'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`flex-1 rounded-xl py-2 text-sm font-semibold transition-all ${
               activeTab === tab
-                ? 'bg-white text-[#0a2540] shadow-sm'
-                : 'text-[#697386] hover:text-[#425466]'
+                ? 'bg-[var(--cf-card)] text-[var(--cf-heading)] shadow-sm'
+                : 'text-[var(--cf-muted)] hover:text-[var(--cf-body)]'
             }`}
           >
             {tab === 'file' ? 'Upload file' : 'Paste link'}
@@ -80,21 +76,21 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
         {activeTab === 'file' ? (
           <>
             {fileValue ? (
-              <div className="flex items-center justify-between rounded-xl border border-violet-200 bg-violet-50 px-4 py-3">
+              <div className="flex items-center justify-between rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 dark:border-violet-700 dark:bg-violet-900/20">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-100 text-violet-600">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-100 text-violet-600 dark:bg-violet-800">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
                     </svg>
                   </div>
                   <div>
-                    <p className="max-w-[200px] truncate text-sm font-semibold text-[#0a2540]">{fileValue.name}</p>
-                    <p className="text-xs text-[#697386]">{formatBytes(fileValue.size)}</p>
+                    <p className="max-w-[200px] truncate text-sm font-semibold text-[var(--cf-heading)]">{fileValue.name}</p>
+                    <p className="text-xs text-[var(--cf-muted)]">{formatBytes(fileValue.size)}</p>
                   </div>
                 </div>
                 <button
                   onClick={() => { onChange(null); if (fileInputRef.current) fileInputRef.current.value = ''; }}
-                  className="text-sm font-medium text-[#697386] transition-colors hover:text-red-500"
+                  className="text-sm font-medium text-[var(--cf-muted)] transition-colors hover:text-red-500"
                   aria-label="Remove file"
                 >
                   Remove
@@ -106,24 +102,24 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
                 onDragLeave={() => setIsDragging(false)}
                 onDrop={handleDrop}
                 onClick={() => fileInputRef.current?.click()}
-                onKeyDown={handleKeyDown}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInputRef.current?.click(); } }}
                 role="button"
                 tabIndex={0}
                 aria-label="Drop MP4 video here or click to browse"
                 className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed py-12 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 ${
                   isDragging
-                    ? 'border-violet-400 bg-violet-50'
-                    : 'border-gray-200 hover:border-violet-300 hover:bg-violet-50/50'
+                    ? 'border-violet-400 bg-violet-50 dark:bg-violet-900/20'
+                    : 'border-[var(--cf-border)] hover:border-violet-300 hover:bg-violet-50/50 dark:hover:bg-violet-900/10'
                 }`}
               >
-                <div className={`flex h-12 w-12 items-center justify-center rounded-full transition-colors ${isDragging ? 'bg-violet-100 text-violet-600' : 'bg-gray-100 text-[#697386]'}`}>
+                <div className={`flex h-12 w-12 items-center justify-center rounded-full transition-colors ${isDragging ? 'bg-violet-100 text-violet-600 dark:bg-violet-900/40' : 'bg-[var(--cf-section)] text-[var(--cf-muted)]'}`}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="16 16 12 12 8 16" /><line x1="12" y1="12" x2="12" y2="21" /><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
                   </svg>
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-[#0a2540]">Drop your MP4 here</p>
-                  <p className="mt-1 text-sm text-[#697386]">or <span className="text-violet-600 underline underline-offset-2">click to browse</span></p>
+                  <p className="font-semibold text-[var(--cf-heading)]">Drop your MP4 here</p>
+                  <p className="mt-1 text-sm text-[var(--cf-muted)]">or <span className="text-violet-600 underline underline-offset-2">click to browse</span></p>
                 </div>
               </div>
             )}
@@ -139,7 +135,7 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
                 value={urlInput}
                 onChange={(e) => handleUrlChange(e.target.value)}
                 placeholder={hintPlatform ? SOURCE_PLATFORMS.find(s => s.id === hintPlatform)?.placeholder : 'Paste a link from Facebook, Instagram, TikTok, or YouTube'}
-                className="w-full rounded-xl border border-[#e6ebf1] bg-white px-4 py-3 text-sm text-[#0a2540] placeholder-[#697386] outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
+                className="w-full rounded-xl border border-[var(--cf-border)] bg-[var(--cf-card)] px-4 py-3 text-sm text-[var(--cf-heading)] placeholder-[var(--cf-muted)] outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-100 dark:focus:ring-violet-900/40"
               />
               {urlError && <p role="alert" className="mt-2 text-xs font-medium text-red-500">{urlError}</p>}
               {urlValue && !urlError && (
@@ -148,8 +144,6 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
                 </p>
               )}
             </div>
-
-            {/* Platform chips */}
             <div className="flex flex-wrap gap-2">
               {SOURCE_PLATFORMS.map((sp) => (
                 <button
@@ -157,8 +151,8 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
                   onClick={() => setHintPlatform(hintPlatform === sp.id ? null : sp.id)}
                   className={`group flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all ${
                     hintPlatform === sp.id
-                      ? 'border-violet-300 bg-violet-50 text-violet-700'
-                      : 'border-[#e6ebf1] bg-white text-[#697386] hover:border-violet-200 hover:text-[#425466]'
+                      ? 'border-violet-300 bg-violet-50 text-violet-700 dark:border-violet-700 dark:bg-violet-900/30 dark:text-violet-300'
+                      : 'border-[var(--cf-border)] text-[var(--cf-muted)] hover:border-violet-200 hover:text-[var(--cf-body)]'
                   }`}
                 >
                   <span className={`platform-icon flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold text-white ${sp.badgeClass}`}>

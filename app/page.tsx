@@ -7,6 +7,7 @@ import Hero from '@/app/components/Hero';
 import PlatformLogos from '@/app/components/PlatformLogos';
 import Features from '@/app/components/Features';
 import HowItWorks from '@/app/components/HowItWorks';
+import InteractiveDemo from '@/app/components/InteractiveDemo';
 import AnimateOnScroll from '@/app/components/AnimateOnScroll';
 import UploadZone from '@/app/components/UploadZone';
 import PlatformSelector from '@/app/components/PlatformSelector';
@@ -31,15 +32,13 @@ export default function Home() {
     const platforms = Array.from(selectedPlatforms);
     setPublishSteps(platforms.map((id) => ({ platformId: id, status: 'idle', progress: 0 })));
     setPhase('publishing');
-
     platforms.forEach((id, i) => {
       const startTimer: NodeJS.Timeout = setTimeout(() => {
         setPublishSteps((prev) => prev.map((s) => s.platformId === id ? { ...s, status: 'uploading' } : s));
         let pct = 0;
         const tick: NodeJS.Timeout = setInterval(() => {
           pct = Math.min(pct + Math.random() * 14 + 3, 100);
-          const rounded = Math.round(pct);
-          setPublishSteps((prev) => prev.map((s) => s.platformId === id ? { ...s, progress: rounded } : s));
+          setPublishSteps((prev) => prev.map((s) => s.platformId === id ? { ...s, progress: Math.round(pct) } : s));
           if (pct >= 100) {
             clearInterval(tick);
             setPublishSteps((prev) => prev.map((s) => s.platformId === id ? { ...s, status: 'done', progress: 100 } : s));
@@ -61,49 +60,45 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-[#0a2540]">
+    <div className="min-h-screen transition-colors duration-200" style={{ background: 'var(--cf-page)', color: 'var(--cf-heading)' }}>
       <Header />
       <Hero />
       <PlatformLogos />
       <Features />
       <HowItWorks />
+      <InteractiveDemo />
 
-      {/* ── Try it section ─────────────────────────── */}
-      <section id="try" className="bg-white py-28">
-        {/* Subtle top gradient accent */}
-        <div aria-hidden="true" className="pointer-events-none absolute left-1/2 -translate-x-1/2 h-px w-[600px] bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
-
+      {/* ── Try it section ───────────────────────── */}
+      <section id="try" className="py-28 transition-colors duration-200" style={{ background: 'var(--cf-page)' }}>
         <div className="mx-auto max-w-2xl px-5 sm:px-8">
           <AnimateOnScroll>
             <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-violet-600">
               Try it now
             </p>
-            <h2 className="mb-3 text-center text-4xl font-bold tracking-tight text-[#0a2540] sm:text-5xl">
+            <h2 className="mb-3 text-center text-4xl font-bold tracking-tight text-[var(--cf-heading)] sm:text-5xl">
               Start publishing
             </h2>
-            <p className="mb-12 text-center text-[#425466]">
+            <p className="mb-12 text-center text-[var(--cf-body)]">
               No account needed. Just add your video and go.
             </p>
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={100}>
-            <div className="gradient-border rounded-2xl bg-white p-6 shadow-lg sm:p-8">
+            <div className="gradient-border rounded-2xl p-6 sm:p-8" style={{ background: 'var(--cf-card)' }}>
               {phase === 'input' && (
                 <div className="space-y-8">
                   <section aria-labelledby="upload-heading">
-                    <h3 id="upload-heading" className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#697386]">
+                    <h3 id="upload-heading" className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--cf-muted)]">
                       1 · Add your video
                     </h3>
                     <UploadZone value={uploadSource} onChange={setUploadSource} />
                   </section>
-
                   <section aria-labelledby="platforms-heading">
-                    <h3 id="platforms-heading" className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#697386]">
+                    <h3 id="platforms-heading" className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--cf-muted)]">
                       2 · Choose platforms
                     </h3>
                     <PlatformSelector selected={selectedPlatforms} onChange={setSelectedPlatforms} />
                   </section>
-
                   <PublishButton
                     selectedCount={selectedPlatforms.size}
                     hasSource={uploadSource !== null}
@@ -111,7 +106,6 @@ export default function Home() {
                   />
                 </div>
               )}
-
               {(phase === 'publishing' || phase === 'complete') && (
                 <PublishStatus steps={publishSteps} phase={phase} onReset={handleReset} />
               )}
@@ -121,7 +115,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[#e6ebf1] bg-[#f6f9fc] py-10">
+      <footer className="border-t border-[var(--cf-border)] py-10 transition-colors duration-200" style={{ background: 'var(--cf-section)' }}>
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 sm:flex-row sm:px-8">
           <div className="flex items-center gap-2">
             <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-violet-600 to-blue-500 shadow-sm">
@@ -129,15 +123,13 @@ export default function Home() {
                 <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <span className="text-sm font-semibold text-[#0a2540]">ClipFlow</span>
+            <span className="text-sm font-semibold text-[var(--cf-heading)]">ClipFlow</span>
           </div>
-          <p className="text-xs text-[#697386]">
-            © {new Date().getFullYear()} ClipFlow. Clip once. Post everywhere.
-          </p>
-          <div className="flex gap-5 text-xs font-medium text-[#697386]">
-            <a href="#" className="transition-colors hover:text-[#0a2540]">Privacy</a>
-            <a href="#" className="transition-colors hover:text-[#0a2540]">Terms</a>
-            <a href="#" className="transition-colors hover:text-[#0a2540]">Contact</a>
+          <p className="text-xs text-[var(--cf-muted)]">© {new Date().getFullYear()} ClipFlow. Clip once. Post everywhere.</p>
+          <div className="flex gap-5 text-xs font-medium text-[var(--cf-muted)]">
+            <a href="#" className="transition-colors hover:text-[var(--cf-heading)]">Privacy</a>
+            <a href="#" className="transition-colors hover:text-[var(--cf-heading)]">Terms</a>
+            <a href="#" className="transition-colors hover:text-[var(--cf-heading)]">Contact</a>
           </div>
         </div>
       </footer>
