@@ -2,6 +2,7 @@
 
 import { PLATFORMS } from '@/app/lib/platforms';
 import type { PlatformId } from '@/app/types/clipflow';
+import PlatformIcon from '@/app/components/ui/PlatformIcon';
 
 interface PlatformSelectorProps {
   selected: Set<PlatformId>;
@@ -31,9 +32,7 @@ export default function PlatformSelector({ selected, onChange }: PlatformSelecto
                 : 'border-[var(--cf-border)] bg-[var(--cf-card)] shadow-sm hover:border-orange-200 hover:shadow-md dark:hover:border-orange-800'
             }`}
           >
-            <div className={`icon-hover flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${platform.badgeClass} text-xs font-bold text-white shadow-sm`}>
-              {platform.badge}
-            </div>
+            <PlatformIcon id={platform.id} size="lg" className="icon-hover h-9 w-9 shrink-0 rounded-lg shadow-sm" />
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold text-[var(--cf-heading)]">{platform.label}</p>
               <p className="truncate text-xs text-[var(--cf-muted)]">{platform.description}</p>

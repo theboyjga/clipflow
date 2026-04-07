@@ -2,6 +2,7 @@
 
 import { getPlatform } from '@/app/lib/platforms';
 import type { AppPhase, PublishStep } from '@/app/types/clipflow';
+import PlatformIcon from '@/app/components/ui/PlatformIcon';
 
 interface PublishStatusProps {
   steps: PublishStep[];
@@ -31,9 +32,7 @@ export default function PublishStatus({ steps, phase, onReset }: PublishStatusPr
           const platform = getPlatform(step.platformId);
           return (
             <div key={step.platformId} className="flex items-center gap-3 px-4 py-3">
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${platform.badgeClass} text-xs font-bold text-white`}>
-                {platform.badge}
-              </div>
+              <PlatformIcon id={platform.id} size="md" className="h-8 w-8 shrink-0 rounded-lg" />
               <div className="flex min-w-0 flex-1 flex-col gap-1">
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-sm font-semibold text-[var(--cf-heading)]">{platform.label}</span>
@@ -51,7 +50,7 @@ export default function PublishStatus({ steps, phase, onReset }: PublishStatusPr
                     className={`h-full rounded-full transition-all duration-300 ${
                       step.status === 'done'  ? 'bg-emerald-500' :
                       step.status === 'error' ? 'bg-red-500' :
-                      `bg-gradient-to-r ${platform.badgeClass}`
+                      'bg-orange-500'
                     }`}
                     style={{ width: `${step.progress}%` }}
                   />
