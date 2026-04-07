@@ -1,17 +1,19 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import PlatformIcon from '@/app/components/ui/PlatformIcon';
+import type { PlatformId } from '@/app/types/clipflow';
 
 const STEPS = ['Import', 'Select', 'Publish'] as const;
 type Step = (typeof STEPS)[number];
 
-const PLATFORMS = [
-  { badge: 'IG', label: 'Instagram Reels', color: 'from-pink-500 to-orange-400' },
-  { badge: 'TT', label: 'TikTok',          color: 'from-zinc-600 to-zinc-800' },
-  { badge: 'YT', label: 'YouTube Shorts',  color: 'from-red-500 to-red-600' },
-  { badge: 'FB', label: 'Facebook Reels',  color: 'from-blue-600 to-blue-700' },
-  { badge: 'X',  label: 'Twitter / X',     color: 'from-zinc-800 to-zinc-950' },
-  { badge: 'in', label: 'LinkedIn',        color: 'from-blue-700 to-blue-900' },
+const PLATFORMS: { id: PlatformId; label: string }[] = [
+  { id: 'instagram', label: 'Instagram Reels' },
+  { id: 'tiktok',    label: 'TikTok'          },
+  { id: 'youtube',   label: 'YouTube Shorts'  },
+  { id: 'facebook',  label: 'Facebook Reels'  },
+  { id: 'twitter',   label: 'Twitter / X'     },
+  { id: 'linkedin',  label: 'LinkedIn'        },
 ];
 
 export default function InteractiveDemo() {
@@ -181,14 +183,16 @@ function ImportStep() {
 
       {/* Source platform chips */}
       <div className="flex flex-wrap gap-2">
-        {[
-          { badge: 'TT', label: 'TikTok', color: 'from-zinc-600 to-zinc-800', active: true },
-          { badge: 'IG', label: 'Instagram', color: 'from-pink-500 to-orange-400', active: false },
-          { badge: 'YT', label: 'YouTube', color: 'from-red-500 to-red-600', active: false },
-          { badge: 'FB', label: 'Facebook', color: 'from-blue-600 to-blue-700', active: false },
-        ].map((p) => (
-          <div key={p.badge} className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all ${p.active ? 'border-orange-300 bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300' : 'border-[var(--cf-border)] text-[var(--cf-muted)]'}`}>
-            <span className={`flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br ${p.color} text-[9px] font-bold text-white`}>{p.badge[0]}</span>
+        {(
+          [
+            { id: 'tiktok'    as PlatformId, label: 'TikTok',     active: true  },
+            { id: 'instagram' as PlatformId, label: 'Instagram',  active: false },
+            { id: 'youtube'   as PlatformId, label: 'YouTube',    active: false },
+            { id: 'facebook'  as PlatformId, label: 'Facebook',   active: false },
+          ]
+        ).map((p) => (
+          <div key={p.id} className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all ${p.active ? 'border-orange-300 bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300' : 'border-[var(--cf-border)] text-[var(--cf-muted)]'}`}>
+            <PlatformIcon id={p.id} size="sm" />
             {p.label}
           </div>
         ))}
@@ -222,7 +226,7 @@ function SelectStep() {
 
   // Auto-select platforms one by one
   useEffect(() => {
-    const ids = ['IG', 'TT', 'YT', 'FB'];
+    const ids: PlatformId[] = ['instagram', 'tiktok', 'youtube', 'facebook'];
     ids.forEach((id, i) => {
       setTimeout(() => setSelected((prev) => new Set([...prev, id])), i * 350 + 300);
     });
@@ -238,13 +242,13 @@ function SelectStep() {
 
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
         {PLATFORMS.map((p) => {
-          const isSelected = selected.has(p.badge);
+          const isSelected = selected.has(p.id);
           return (
             <button
-              key={p.badge}
+              key={p.id}
               onClick={() => setSelected((prev) => {
                 const next = new Set(prev);
-                if (next.has(p.badge)) next.delete(p.badge); else next.add(p.badge);
+                if (next.has(p.id)) next.delete(p.id); else next.add(p.id);
                 return next;
               })}
               className={`flex items-center gap-2.5 rounded-xl border p-3 text-left transition-all duration-300 ${
@@ -253,9 +257,7 @@ function SelectStep() {
                   : 'border-[var(--cf-border)] bg-[var(--cf-card)] hover:border-orange-200'
               }`}
             >
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${p.color} text-[10px] font-bold text-white shadow-sm`}>
-                {p.badge}
-              </div>
+              <PlatformIcon id={p.id} size="md" className="h-8 w-8 rounded-lg shadow-sm" />
               <div className="min-w-0">
                 <p className="truncate text-xs font-semibold text-[var(--cf-heading)]">{p.label}</p>
               </div>
@@ -296,10 +298,10 @@ function PublishStep() {
         let pct = 0;
         const tick = setInterval(() => {
           pct = Math.min(pct + Math.random() * 18 + 5, 100);
-          setProgress((prev) => ({ ...prev, [p.badge]: Math.round(pct) }));
+          setProgress((prev) => ({ ...prev, [p.id]: Math.round(pct) }));
           if (pct >= 100) {
             clearInterval(tick);
-            setDone((prev) => new Set([...prev, p.badge]));
+            setDone((prev) => new Set([...prev, p.id]));
           }
         }, 100);
       }, i * 300);
@@ -322,13 +324,11 @@ function PublishStep() {
 
       <div className="overflow-hidden rounded-xl border border-[var(--cf-border)] bg-[var(--cf-card)]">
         {PLATFORMS.slice(0, 4).map((p, i) => {
-          const pct = progress[p.badge] ?? 0;
-          const isDone = done.has(p.badge);
+          const pct = progress[p.id] ?? 0;
+          const isDone = done.has(p.id);
           return (
-            <div key={p.badge} className={`flex items-center gap-3 px-4 py-3 ${i < 3 ? 'border-b border-[var(--cf-border)]' : ''}`}>
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${p.color} text-[10px] font-bold text-white`}>
-                {p.badge}
-              </div>
+            <div key={p.id} className={`flex items-center gap-3 px-4 py-3 ${i < 3 ? 'border-b border-[var(--cf-border)]' : ''}`}>
+              <PlatformIcon id={p.id} size="md" className="h-8 w-8 rounded-lg" />
               <div className="flex-1">
                 <div className="mb-1.5 flex items-center justify-between">
                   <span className="text-xs font-semibold text-[var(--cf-heading)]">{p.label}</span>
@@ -340,7 +340,7 @@ function PublishStep() {
                 </div>
                 <div className="h-1.5 overflow-hidden rounded-full bg-[var(--cf-section)]">
                   <div
-                    className={`h-full rounded-full transition-all duration-200 ${isDone ? 'bg-emerald-500' : `bg-gradient-to-r ${p.color}`}`}
+                    className={`h-full rounded-full transition-all duration-200 ${isDone ? 'bg-emerald-500' : 'bg-orange-600'}`}
                     style={{ width: `${pct}%` }}
                   />
                 </div>

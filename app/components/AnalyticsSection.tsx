@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import AnimateOnScroll from './AnimateOnScroll';
+import PlatformIcon from '@/app/components/ui/PlatformIcon';
+import type { PlatformId } from '@/app/types/clipflow';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 type Period = '7d' | '30d' | '90d';
@@ -24,12 +26,12 @@ const CHART_DATA: Record<Period, number[]> = {
     Math.round(100 + Math.sin(i / 7) * 45 + i * 5.8 + (i % 13) * 4)),
 };
 
-const PLATFORM_STATS = [
-  { id: 'instagram', name: 'Instagram', badge: 'IG', views: '845K', pct: 35, color: 'from-pink-500 to-orange-400' },
-  { id: 'tiktok',    name: 'TikTok',    badge: 'TT', views: '623K', pct: 26, color: 'from-zinc-600 to-zinc-800'   },
-  { id: 'youtube',   name: 'YouTube',   badge: 'YT', views: '489K', pct: 20, color: 'from-red-500 to-red-600'     },
-  { id: 'facebook',  name: 'Facebook',  badge: 'FB', views: '312K', pct: 13, color: 'from-blue-600 to-blue-700'   },
-  { id: 'linkedin',  name: 'LinkedIn',  badge: 'LI', views: '131K', pct: 6,  color: 'from-blue-700 to-cyan-600'   },
+const PLATFORM_STATS: { id: PlatformId; name: string; views: string; pct: number; barColor: string }[] = [
+  { id: 'instagram', name: 'Instagram', views: '845K', pct: 35, barColor: 'from-pink-500 to-orange-400' },
+  { id: 'tiktok',    name: 'TikTok',    views: '623K', pct: 26, barColor: 'from-zinc-600 to-zinc-800'   },
+  { id: 'youtube',   name: 'YouTube',   views: '489K', pct: 20, barColor: 'from-red-500 to-red-600'     },
+  { id: 'facebook',  name: 'Facebook',  views: '312K', pct: 13, barColor: 'from-blue-600 to-blue-700'   },
+  { id: 'linkedin',  name: 'LinkedIn',  views: '131K', pct: 6,  barColor: 'from-blue-700 to-cyan-600'   },
 ];
 
 const RECENT_POSTS = [
@@ -301,9 +303,7 @@ export default function AnalyticsSection() {
                   <div className="space-y-4">
                     {PLATFORM_STATS.map((p) => (
                       <div key={p.id} className="flex items-center gap-3">
-                        <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${p.color} text-[10px] font-bold text-white shadow-sm`}>
-                          {p.badge}
-                        </div>
+                        <PlatformIcon id={p.id} size="lg" />
                         <div className="flex-1">
                           <div className="mb-1.5 flex items-center justify-between">
                             <span className="text-sm font-semibold text-[var(--cf-heading)]">{p.name}</span>
@@ -311,7 +311,7 @@ export default function AnalyticsSection() {
                           </div>
                           <div className="h-2 w-full overflow-hidden rounded-full" style={{ background: 'var(--cf-section)' }}>
                             <div
-                              className={`h-full rounded-full bg-gradient-to-r ${p.color} transition-all duration-700`}
+                              className={`h-full rounded-full bg-gradient-to-r ${p.barColor} transition-all duration-700`}
                               style={{ width: `${p.pct}%` }}
                             />
                           </div>

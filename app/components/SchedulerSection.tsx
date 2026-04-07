@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import AnimateOnScroll from './AnimateOnScroll';
+import PlatformIcon, { ABBR_TO_ID } from '@/app/components/ui/PlatformIcon';
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 const MONTH_NAMES = [
@@ -15,14 +16,6 @@ const TODAY_DAY   = 7;
 const TODAY_MONTH = 3; // 0-indexed = April
 const TODAY_YEAR  = 2026;
 
-const PLATFORM_COLORS: Record<string, string> = {
-  IG: 'from-pink-500 to-orange-400',
-  TT: 'from-zinc-600 to-zinc-800',
-  YT: 'from-red-500 to-red-600',
-  FB: 'from-blue-600 to-blue-700',
-  LI: 'from-blue-700 to-cyan-600',
-  TW: 'from-sky-500 to-blue-400',
-};
 
 type ScheduledPost = {
   title: string;
@@ -64,12 +57,11 @@ function PostCard({ post }: { post: ScheduledPost }) {
         </p>
         <div className="mt-2 flex flex-wrap gap-1">
           {post.platforms.map((pid) => (
-            <span
+            <PlatformIcon
               key={pid}
-              className={`inline-flex h-5 w-5 items-center justify-center rounded-md bg-gradient-to-br ${PLATFORM_COLORS[pid] ?? 'from-gray-400 to-gray-500'} text-[9px] font-bold text-white`}
-            >
-              {pid}
-            </span>
+              id={ABBR_TO_ID[pid] ?? 'instagram'}
+              size="sm"
+            />
           ))}
         </div>
       </div>
@@ -308,12 +300,11 @@ export default function SchedulerSection() {
                               </div>
                               <div className="flex gap-0.5">
                                 {post.platforms.slice(0, 3).map((pid) => (
-                                  <span
+                                  <PlatformIcon
                                     key={pid}
-                                    className={`inline-flex h-4 w-4 items-center justify-center rounded bg-gradient-to-br ${PLATFORM_COLORS[pid] ?? 'from-gray-400 to-gray-500'} text-[8px] font-bold text-white`}
-                                  >
-                                    {pid.charAt(0)}
-                                  </span>
+                                    id={ABBR_TO_ID[pid] ?? 'instagram'}
+                                    size="sm"
+                                  />
                                 ))}
                                 {post.platforms.length > 3 && (
                                   <span className="text-[10px] text-[var(--cf-muted)]">+{post.platforms.length - 3}</span>

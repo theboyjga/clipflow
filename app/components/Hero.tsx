@@ -3,6 +3,9 @@
 import { motion } from 'framer-motion';
 import { BackgroundPaths } from '@/app/components/ui/background-paths';
 import { AnimatedGroup } from '@/app/components/ui/animated-group';
+import PlatformIcon from '@/app/components/ui/PlatformIcon';
+import ClipFlowLogo from '@/app/components/ui/ClipFlowLogo';
+import type { PlatformId } from '@/app/types/clipflow';
 
 // ── Animated headline helper ───────────────────────────────────────────────────
 function AnimatedWord({
@@ -165,19 +168,21 @@ export default function Hero() {
               transition={{ delay: 1.7, duration: 0.8 }}
               className="mt-8 flex flex-wrap items-center gap-2"
             >
-              {[
-                { badge: 'IG', color: 'from-pink-500 to-orange-400',  label: 'Instagram'   },
-                { badge: 'TT', color: 'from-zinc-500 to-zinc-700',    label: 'TikTok'      },
-                { badge: 'YT', color: 'from-red-500 to-red-700',      label: 'YouTube'     },
-                { badge: 'FB', color: 'from-blue-600 to-blue-800',    label: 'Facebook'    },
-                { badge: 'LI', color: 'from-blue-700 to-cyan-700',    label: 'LinkedIn'    },
-                { badge: 'TW', color: 'from-sky-500 to-blue-500',     label: 'Twitter / X' },
-              ].map((p) => (
+              {(
+                [
+                  { id: 'instagram' as PlatformId, label: 'Instagram'   },
+                  { id: 'tiktok'    as PlatformId, label: 'TikTok'      },
+                  { id: 'youtube'   as PlatformId, label: 'YouTube'     },
+                  { id: 'facebook'  as PlatformId, label: 'Facebook'    },
+                  { id: 'linkedin'  as PlatformId, label: 'LinkedIn'    },
+                  { id: 'twitter'   as PlatformId, label: 'Twitter / X' },
+                ]
+              ).map((p) => (
                 <div
-                  key={p.badge}
+                  key={p.id}
                   className="flex items-center gap-1.5 rounded-lg border border-white/8 bg-white/5 px-2.5 py-1.5 backdrop-blur-sm"
                 >
-                  <div className={`flex h-4 w-4 items-center justify-center rounded bg-gradient-to-br ${p.color} text-[8px] font-bold text-white`}>{p.badge}</div>
+                  <PlatformIcon id={p.id} size="sm" />
                   <span className="text-[11px] font-medium text-white/50">{p.label}</span>
                 </div>
               ))}
@@ -218,7 +223,7 @@ function DeviceMockup() {
         <div className="space-y-3 px-4 pb-4 pt-2">
           <div className="flex items-center justify-between py-1">
             <div className="flex items-center gap-1.5">
-              <div className="h-5 w-5 rounded-md bg-gradient-to-br from-orange-500 to-orange-700" />
+              <ClipFlowLogo size={20} />
               <span className="text-xs font-bold text-white/80">ClipFlow</span>
             </div>
             <div className="h-6 w-6 rounded-full bg-white/10" />
@@ -240,17 +245,19 @@ function DeviceMockup() {
             </div>
           </div>
 
-          {[
-            { badge: 'IG', color: 'from-pink-500 to-orange-400', w: '60%' },
-            { badge: 'TT', color: 'from-zinc-500 to-zinc-700',   w: '45%' },
-            { badge: 'YT', color: 'from-red-500 to-red-600',     w: '78%' },
-            { badge: 'FB', color: 'from-blue-600 to-blue-700',   w: '32%' },
-          ].map((p, i) => (
-            <div key={i} className="flex items-center gap-2 rounded-xl border border-white/8 p-2" style={{ background: 'rgba(255,255,255,0.04)' }}>
-              <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${p.color} text-[9px] font-bold text-white`}>{p.badge}</div>
+          {(
+            [
+              { id: 'instagram' as PlatformId, barColor: 'from-pink-500 to-orange-400', w: '60%' },
+              { id: 'tiktok'    as PlatformId, barColor: 'from-zinc-500 to-zinc-700',   w: '45%' },
+              { id: 'youtube'   as PlatformId, barColor: 'from-red-500 to-red-600',     w: '78%' },
+              { id: 'facebook'  as PlatformId, barColor: 'from-blue-600 to-blue-700',   w: '32%' },
+            ]
+          ).map((p, i) => (
+            <div key={p.id} className="flex items-center gap-2 rounded-xl border border-white/8 p-2" style={{ background: 'rgba(255,255,255,0.04)' }}>
+              <PlatformIcon id={p.id} size="sm" className="h-7 w-7 rounded-lg" />
               <div className="flex-1 space-y-1.5">
                 <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-                  <div className={`absolute left-0 top-0 h-full rounded-full bg-gradient-to-r ${p.color}`} style={{ width: p.w, animation: `progressFill 1.5s ${i * 0.3}s ease both` }} />
+                  <div className={`absolute left-0 top-0 h-full rounded-full bg-gradient-to-r ${p.barColor}`} style={{ width: p.w, animation: `progressFill 1.5s ${i * 0.3}s ease both` }} />
                 </div>
                 <div className="h-1.5 w-8 rounded-full bg-white/10" />
               </div>
@@ -264,10 +271,10 @@ function DeviceMockup() {
         </div>
       </div>
 
-      <FloatingBadge className="animate-float-reverse -left-16 top-16 delay-100" color="from-pink-500 to-orange-400"  label="Instagram" badge="IG" />
-      <FloatingBadge className="animate-float        -right-14 top-32 delay-300" color="from-red-500 to-red-600"      label="YouTube"   badge="YT" />
-      <FloatingBadge className="animate-float-reverse -left-12 bottom-28 delay-500" color="from-blue-600 to-blue-700" label="Facebook"  badge="FB" />
-      <FloatingBadge className="animate-float        -right-16 bottom-14 delay-200" color="from-zinc-500 to-zinc-700" label="TikTok"    badge="TT" />
+      <FloatingBadge className="animate-float-reverse -left-16 top-16 delay-100"    platformId="instagram" label="Instagram" />
+      <FloatingBadge className="animate-float        -right-14 top-32 delay-300"    platformId="youtube"   label="YouTube"   />
+      <FloatingBadge className="animate-float-reverse -left-12 bottom-28 delay-500" platformId="facebook"  label="Facebook"  />
+      <FloatingBadge className="animate-float        -right-16 bottom-14 delay-200" platformId="tiktok"    label="TikTok"    />
 
       <div className="animate-float delay-400 absolute -right-6 top-10 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#1e1a2e]/90 px-3 py-2.5 shadow-xl backdrop-blur-md">
         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/15">
@@ -284,12 +291,12 @@ function DeviceMockup() {
   );
 }
 
-function FloatingBadge({ className, color, label, badge }: {
-  className: string; color: string; label: string; badge: string;
+function FloatingBadge({ className, platformId, label }: {
+  className: string; platformId: PlatformId; label: string;
 }) {
   return (
     <div className={`absolute flex items-center gap-2 rounded-xl border border-white/10 bg-[#1e1a2e]/85 px-3 py-2 shadow-lg backdrop-blur-md ${className}`}>
-      <div className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${color} text-[9px] font-bold text-white`}>{badge}</div>
+      <PlatformIcon id={platformId} size="sm" className="h-6 w-6 rounded-md" />
       <span className="text-[11px] font-semibold text-white/70">{label}</span>
     </div>
   );

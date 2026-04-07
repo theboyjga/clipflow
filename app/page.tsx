@@ -11,6 +11,7 @@ import InteractiveDemo from '@/app/components/InteractiveDemo';
 import AnalyticsSection from '@/app/components/AnalyticsSection';
 import SchedulerSection from '@/app/components/SchedulerSection';
 import AnimateOnScroll from '@/app/components/AnimateOnScroll';
+import ClipFlowLogo from '@/app/components/ui/ClipFlowLogo';
 import UploadZone from '@/app/components/UploadZone';
 import PlatformSelector from '@/app/components/PlatformSelector';
 import PublishButton from '@/app/components/PublishButton';
@@ -119,21 +120,45 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[var(--cf-border)] py-10 transition-colors duration-200" style={{ background: 'var(--cf-section)' }}>
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 sm:flex-row sm:px-8">
-          <div className="flex items-center gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-orange-600 to-orange-800 shadow-sm">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" className="text-white">
-                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+      <footer className="border-t border-white/8 py-12 transition-colors duration-200" style={{ background: '#07040f' }}>
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="flex flex-col items-center justify-between gap-8 sm:flex-row sm:items-start">
+            {/* Brand */}
+            <div className="flex flex-col items-center gap-2 sm:items-start">
+              <a href="/" className="flex items-center gap-2.5">
+                <ClipFlowLogo size={28} />
+                <span className="text-[15px] font-bold tracking-tight text-white">
+                  Clip<span className="text-orange-400">Flow</span>
+                </span>
+              </a>
+              <p className="text-xs text-white/40">Clip once. Post everywhere.</p>
             </div>
-            <span className="text-sm font-semibold text-[var(--cf-heading)]">ClipFlow</span>
+
+            {/* Link columns */}
+            <div className="flex gap-12 text-xs">
+              <div className="flex flex-col gap-2">
+                <p className="mb-1 font-semibold uppercase tracking-widest text-white/30">Product</p>
+                {['Features', 'Demo', 'Pricing'].map((l) => (
+                  <a key={l} href="#" className="text-white/50 transition-colors hover:text-white">{l}</a>
+                ))}
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="mb-1 font-semibold uppercase tracking-widest text-white/30">Company</p>
+                {['About', 'Blog'].map((l) => (
+                  <a key={l} href="#" className="text-white/50 transition-colors hover:text-white">{l}</a>
+                ))}
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="mb-1 font-semibold uppercase tracking-widest text-white/30">Legal</p>
+                {['Privacy', 'Terms'].map((l) => (
+                  <a key={l} href="#" className="text-white/50 transition-colors hover:text-white">{l}</a>
+                ))}
+              </div>
+            </div>
           </div>
-          <p className="text-xs text-[var(--cf-muted)]">© {new Date().getFullYear()} ClipFlow. Clip once. Post everywhere.</p>
-          <div className="flex gap-5 text-xs font-medium text-[var(--cf-muted)]">
-            <a href="#" className="transition-colors hover:text-[var(--cf-heading)]">Privacy</a>
-            <a href="#" className="transition-colors hover:text-[var(--cf-heading)]">Terms</a>
-            <a href="#" className="transition-colors hover:text-[var(--cf-heading)]">Contact</a>
+
+          <div className="mt-10 border-t border-white/8 pt-6">
+            <p className="text-center text-[11px] text-white/30">© 2026 ClipFlow. All rights reserved.</p>
           </div>
         </div>
       </footer>
