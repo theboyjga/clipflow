@@ -1,0 +1,148 @@
+import AnimateOnScroll from '@/app/components/AnimateOnScroll';
+
+const steps = [
+  {
+    step: '01',
+    title: 'Add your clip',
+    body: 'Upload an MP4 from your device or paste a public link from any short-form video platform.',
+    illustration: <UploadIllustration />,
+  },
+  {
+    step: '02',
+    title: 'Select destinations',
+    body: 'Pick any combination of Instagram, TikTok, YouTube, Facebook, Twitter, and LinkedIn.',
+    illustration: <SelectIllustration />,
+  },
+  {
+    step: '03',
+    title: 'Publish in one click',
+    body: 'Hit Publish and watch your clip go live across every platform simultaneously.',
+    illustration: <LiveIllustration />,
+  },
+];
+
+export default function HowItWorks() {
+  return (
+    <section id="how-it-works" className="bg-[#f6f9fc] py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <AnimateOnScroll>
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-violet-600">
+            How it works
+          </p>
+          <h2 className="mx-auto mb-20 max-w-xl text-center text-4xl font-bold tracking-tight text-[#0a2540] sm:text-5xl">
+            Three steps to everywhere
+          </h2>
+        </AnimateOnScroll>
+
+        <div className="flex flex-col gap-6 sm:flex-row">
+          {steps.map((s, i) => (
+            <AnimateOnScroll key={i} delay={i * 120} direction="up" className="flex-1">
+              <StepCard {...s} />
+            </AnimateOnScroll>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StepCard({ step, title, body, illustration }: {
+  step: string; title: string; body: string; illustration: React.ReactNode;
+}) {
+  return (
+    <div className="group card-shadow flex flex-col overflow-hidden rounded-2xl border border-[#e6ebf1] bg-white">
+      {/* Illustration */}
+      <div className="relative h-52 overflow-hidden border-b border-[#e6ebf1] bg-[#f6f9fc] shimmer-placeholder">
+        {illustration}
+        <div className="absolute right-4 top-4 rounded-full border border-[#e6ebf1] bg-white px-2.5 py-1 text-xs font-semibold text-[#697386]">
+          {step}
+        </div>
+      </div>
+      <div className="p-6">
+        <h3 className="mb-2 font-semibold text-[#0a2540]">{title}</h3>
+        <p className="text-sm leading-relaxed text-[#425466]">{body}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ── Illustrations ─────────────────────────────── */
+
+function UploadIllustration() {
+  return (
+    <div className="flex h-full items-center justify-center">
+      <div className="group relative mx-6 flex h-32 w-full max-w-[240px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-violet-300 bg-violet-50">
+        <div className="icon-bounce flex h-10 w-10 items-center justify-center rounded-full bg-violet-100 ring-8 ring-violet-50">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-violet-600" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="16 16 12 12 8 16" /><line x1="12" y1="12" x2="12" y2="21" />
+            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
+          </svg>
+        </div>
+        <div className="space-y-1 text-center">
+          <div className="mx-auto h-2 w-24 rounded-full bg-gray-200" />
+          <div className="mx-auto h-1.5 w-16 rounded-full bg-gray-100" />
+        </div>
+        <div className="absolute -right-8 -top-4 flex items-center gap-1.5 rounded-xl border border-[#e6ebf1] bg-white px-2.5 py-1.5 shadow-md">
+          <div className="h-4 w-4 rounded bg-violet-100" />
+          <div className="h-1.5 w-12 rounded-full bg-gray-200" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SelectIllustration() {
+  return (
+    <div className="flex h-full items-center justify-center px-6">
+      <div className="grid w-full max-w-[240px] grid-cols-2 gap-2">
+        {[
+          { badge: 'IG', color: 'from-pink-500 to-orange-400', selected: true },
+          { badge: 'TT', color: 'from-zinc-600 to-zinc-800',   selected: true },
+          { badge: 'YT', color: 'from-red-500 to-red-700',     selected: false },
+          { badge: 'FB', color: 'from-blue-600 to-blue-800',   selected: true },
+          { badge: 'X',  color: 'from-zinc-800 to-black',      selected: false },
+          { badge: 'in', color: 'from-blue-700 to-blue-900',   selected: true },
+        ].map((p, i) => (
+          <div
+            key={i}
+            className={`flex items-center gap-2 rounded-xl p-2 transition-all ${
+              p.selected
+                ? 'border border-violet-200 bg-violet-50'
+                : 'border border-[#e6ebf1] bg-white'
+            }`}
+          >
+            <div className={`icon-hover flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br ${p.color} text-[9px] font-bold text-white`}>
+              {p.badge}
+            </div>
+            {p.selected && (
+              <div className="ml-auto flex h-4 w-4 items-center justify-center rounded-full bg-violet-500 text-[8px] text-white">✓</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function LiveIllustration() {
+  return (
+    <div className="flex h-full flex-col items-center justify-center gap-4 px-6">
+      <div className="icon-bounce flex w-full max-w-[200px] items-center justify-center rounded-xl bg-gradient-to-r from-violet-600 to-blue-500 py-2.5 shadow-md shadow-violet-200">
+        <div className="h-2 w-20 rounded-full bg-white/60" />
+      </div>
+      <div className="flex gap-3">
+        {[
+          'from-pink-500 to-orange-400',
+          'from-red-500 to-red-600',
+          'from-blue-600 to-blue-700',
+          'from-zinc-600 to-zinc-800',
+        ].map((c, i) => (
+          <div key={i} className="flex flex-col items-center gap-1.5">
+            <div className={`icon-hover h-9 w-9 rounded-xl bg-gradient-to-br ${c} shadow-sm`} />
+            <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 ring-2 ring-emerald-100" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
