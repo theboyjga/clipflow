@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ClipFlow Dev Server",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "cd /Users/isaacantao/Desktop/clipflow/.claude/worktrees/suspicious-newton && PATH=/usr/local/bin:$PATH node /Users/isaacantao/Desktop/clipflow/node_modules/.bin/next dev --webpack"],
+      "port": 3000
+    }
+  ]
+}

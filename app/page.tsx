@@ -8,6 +8,8 @@ import PlatformLogos from '@/app/components/PlatformLogos';
 import Features from '@/app/components/Features';
 import HowItWorks from '@/app/components/HowItWorks';
 import InteractiveDemo from '@/app/components/InteractiveDemo';
+import AnalyticsSection from '@/app/components/AnalyticsSection';
+import SchedulerSection from '@/app/components/SchedulerSection';
 import AnimateOnScroll from '@/app/components/AnimateOnScroll';
 import UploadZone from '@/app/components/UploadZone';
 import PlatformSelector from '@/app/components/PlatformSelector';
@@ -67,6 +69,8 @@ export default function Home() {
       <Features />
       <HowItWorks />
       <InteractiveDemo />
+      <AnalyticsSection />
+      <SchedulerSection />
 
       {/* ── Try it section ───────────────────────── */}
       <section id="try" className="py-28 transition-colors duration-200" style={{ background: 'var(--cf-page)' }}>
