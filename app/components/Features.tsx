@@ -1,3 +1,4 @@
+import { AnimatedGroup } from '@/app/components/ui/animated-group';
 import AnimateOnScroll from '@/app/components/AnimateOnScroll';
 
 const features = [
@@ -37,13 +38,27 @@ export default function Features() {
           </h2>
         </AnimateOnScroll>
 
-        <div className="grid gap-5 sm:grid-cols-3">
+        <AnimatedGroup
+          preset="blur-slide"
+          className="grid gap-5 sm:grid-cols-3"
+          variants={{
+            container: {
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
+            },
+            item: {
+              hidden: { opacity: 0, y: 32, filter: 'blur(8px)' },
+              visible: {
+                opacity: 1, y: 0, filter: 'blur(0px)',
+                transition: { type: 'spring', bounce: 0.25, duration: 0.9 },
+              },
+            },
+          }}
+        >
           {features.map((f, i) => (
-            <AnimateOnScroll key={i} delay={i * 100} direction="up">
-              <FeatureCard {...f} />
-            </AnimateOnScroll>
+            <FeatureCard key={i} {...f} />
           ))}
-        </div>
+        </AnimatedGroup>
       </div>
     </section>
   );
