@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { SOURCE_PLATFORMS } from '@/app/lib/platforms';
-import type { SourcePlatformId, UploadSource, PlatformId } from '@/app/types/clipflow';
+import type { SourcePlatformId, UploadSource } from '@/app/types/clipflow';
 import PlatformIcon from '@/app/components/ui/PlatformIcon';
 
 interface UploadZoneProps {
@@ -156,7 +156,7 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
                       : 'border-[var(--cf-border)] text-[var(--cf-muted)] hover:border-orange-200 hover:text-[var(--cf-body)]'
                   }`}
                 >
-                  <PlatformIcon id={sp.id as PlatformId} size="sm" className="rounded-full" />
+                  <PlatformIcon id={sp.id} size="sm" className="rounded-full" />
                   {sp.label}
                 </button>
               ))}

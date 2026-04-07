@@ -233,6 +233,70 @@ html.dark .glass {
   transform: translateY(-2px);
 }
 
+/* ─── Auth / Dashboard utilities ────────────────── */
+
+/* Text input field — used in auth forms */
+.auth-field {
+  display: block;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--cf-border);
+  background: var(--cf-card);
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  color: var(--cf-heading);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.auth-field::placeholder { color: var(--cf-muted); }
+.auth-field:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+}
+html.dark .auth-field:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
+}
+
+/* Primary black CTA button — auth pages */
+.btn-auth-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: #000;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.btn-auth-primary:hover   { background: #1a1a1a; }
+html.dark .btn-auth-primary { background: #fff; color: #000; }
+html.dark .btn-auth-primary:hover { background: #e5e5e5; }
+
+/* ─── Dashboard sidebar ──────────────────────────── */
+.dash-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cf-body);
+  transition: background 0.15s, color 0.15s;
+}
+.dash-nav-item:hover {
+  background: var(--cf-section);
+  color: var(--cf-heading);
+}
+.dash-nav-item.active {
+  background: var(--cf-section);
+  color: var(--cf-heading);
+}
+
 /* Animated gradient border for upload card */
 .gradient-border {
   background:

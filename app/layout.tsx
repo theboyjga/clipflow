@@ -16,8 +16,8 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ClipFlow — Clip once. Post everywhere.",
-  description: "Upload a video or paste a social link and publish to all platforms at once.",
+  title: "ClipFlow — Clip it. Post it. Everywhere.",
+  description: "Upload an MP4 or paste a link from TikTok, Instagram, YouTube, Twitch, or Kick. We publish to all platforms at once.",
 };
 
 export default function RootLayout({

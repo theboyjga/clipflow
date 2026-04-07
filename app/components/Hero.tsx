@@ -91,12 +91,13 @@ export default function Hero() {
             {/* Headline — letter-by-letter spring animation */}
             <h1 className="mb-0 text-5xl font-bold leading-[1.06] tracking-[-0.03em] text-white sm:text-6xl lg:text-[68px]">
               <AnimatedWord word="Clip" wordIndex={0} />{' '}
-              <AnimatedWord word="once." wordIndex={1} />
+              <AnimatedWord word="it." wordIndex={1} />{' '}
+              <AnimatedWord word="Post" wordIndex={2} />{' '}
+              <AnimatedWord word="it." wordIndex={3} />
               <br className="hidden sm:block" />
-              {/* "Post everywhere." gets the gradient */}
+              {/* "Everywhere." gets the gradient */}
               <span className="gradient-text">
-                <AnimatedWord word="Post" wordIndex={2} />{' '}
-                <AnimatedWord word="everywhere." wordIndex={3} />
+                <AnimatedWord word="Everywhere." wordIndex={4} />
               </span>
             </h1>
 
@@ -106,7 +107,7 @@ export default function Hero() {
               transition={{ delay: 0.9, duration: 0.7, ease: 'easeOut' }}
               className="mt-6 text-[1.05rem] leading-relaxed text-white/55"
             >
-              Upload an MP4 or paste a link from TikTok, Instagram, YouTube, or Facebook.
+              Upload an MP4 or paste a link from TikTok, Instagram, YouTube, Facebook, Twitch, or Kick.
               We publish your clip to every platform simultaneously — in seconds.
             </motion.p>
 
@@ -128,19 +129,19 @@ export default function Hero() {
               }}
             >
               <a
-                href="#try"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-700 px-7 py-3 text-[0.9rem] font-bold text-white shadow-xl shadow-orange-700/40 transition-all hover:from-orange-400 hover:to-orange-600 hover:shadow-orange-600/50 active:scale-95"
+                href="/auth"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-7 py-3 text-[0.9rem] font-bold text-white shadow-xl transition-all hover:bg-zinc-800 active:scale-95"
               >
-                Start publishing free
+                Get started free
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
               <a
                 href="#demo"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/6 px-7 py-3 text-[0.9rem] font-semibold text-white/75 backdrop-blur-sm transition-all hover:border-white/30 hover:bg-white/10 hover:text-white"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/6 px-7 py-3 text-[0.9rem] font-semibold text-white/75 backdrop-blur-sm transition-all hover:border-white/35 hover:bg-white/10 hover:text-white"
               >
-                See the demo
+                Watch demo
               </a>
             </AnimatedGroup>
 

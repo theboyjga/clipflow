@@ -78,6 +78,22 @@ export const SOURCE_PLATFORMS: SourcePlatform[] = [
     urlPattern: /youtube\.com|youtu\.be/,
     placeholder: 'https://www.youtube.com/shorts/...',
   },
+  {
+    id: 'twitch',
+    label: 'Twitch',
+    badge: 'TW',
+    badgeClass: 'bg-purple-600',
+    urlPattern: /clips\.twitch\.tv|twitch\.tv\/\w+\/clip/,
+    placeholder: 'https://clips.twitch.tv/...',
+  },
+  {
+    id: 'kick',
+    label: 'Kick',
+    badge: 'KK',
+    badgeClass: 'bg-green-500',
+    urlPattern: /kick\.com\/\w+\/clips|kick\.com\/\w+\?clip=/,
+    placeholder: 'https://kick.com/channel/clips/...',
+  },
 ];
 
 export function getPlatform(id: PlatformId): Platform {

@@ -6,7 +6,7 @@ export type PlatformId =
   | 'twitter'
   | 'linkedin';
 
-export type SourcePlatformId = 'facebook' | 'instagram' | 'tiktok' | 'youtube';
+export type SourcePlatformId = 'facebook' | 'instagram' | 'tiktok' | 'youtube' | 'twitch' | 'kick';
 
 export interface Platform {
   id: PlatformId;
