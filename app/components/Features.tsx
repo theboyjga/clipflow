@@ -1,5 +1,7 @@
 import { AnimatedGroup } from '@/app/components/ui/animated-group';
 import AnimateOnScroll from '@/app/components/AnimateOnScroll';
+import PlatformIcon from '@/app/components/ui/PlatformIcon';
+import type { PlatformId } from '@/app/types/clipflow';
 
 const features = [
   {
@@ -85,15 +87,8 @@ function ImportPlaceholder() {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4 p-5">
       <div className="flex gap-2.5">
-        {[
-          { label: 'TT', color: 'from-zinc-700 to-zinc-900' },
-          { label: 'IG', color: 'from-pink-500 to-orange-400' },
-          { label: 'YT', color: 'from-red-500 to-red-700' },
-          { label: 'FB', color: 'from-blue-600 to-blue-800' },
-        ].map((p, i) => (
-          <div key={i} className={`icon-hover flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${p.color} text-xs font-bold text-white shadow-md`}>
-            {p.label}
-          </div>
+        {(['tiktok', 'instagram', 'youtube', 'facebook'] as PlatformId[]).map((id) => (
+          <PlatformIcon key={id} id={id} size="lg" className="icon-hover h-10 w-10 rounded-xl shadow-md" />
         ))}
       </div>
       <div className="flex h-8 w-8 items-center justify-center rounded-full border border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-900/30">
@@ -123,16 +118,18 @@ function PublishPlaceholder() {
         <div className="h-2 w-24 rounded-full bg-white/60" />
       </div>
       <div className="flex w-full max-w-[200px] flex-col gap-2">
-        {[
-          { color: 'from-pink-500 to-orange-400', label: 'IG', w: '70%' },
-          { color: 'from-zinc-700 to-zinc-900',   label: 'TT', w: '55%' },
-          { color: 'from-red-500 to-red-700',     label: 'YT', w: '80%' },
-          { color: 'from-blue-600 to-blue-800',   label: 'FB', w: '40%' },
-        ].map((p, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <div className={`icon-hover flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${p.color} text-[8px] font-bold text-white`}>{p.label}</div>
+        {(
+          [
+            { id: 'instagram' as PlatformId, barColor: 'from-pink-500 to-orange-400', w: '70%' },
+            { id: 'tiktok'    as PlatformId, barColor: 'from-zinc-700 to-zinc-900',   w: '55%' },
+            { id: 'youtube'   as PlatformId, barColor: 'from-red-500 to-red-700',     w: '80%' },
+            { id: 'facebook'  as PlatformId, barColor: 'from-blue-600 to-blue-800',   w: '40%' },
+          ]
+        ).map((p) => (
+          <div key={p.id} className="flex items-center gap-2">
+            <PlatformIcon id={p.id} size="sm" className="icon-hover h-5 w-5 shrink-0 rounded-md" />
             <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[var(--cf-border)]">
-              <div className={`h-full rounded-full bg-gradient-to-r ${p.color}`} style={{ width: p.w }} />
+              <div className={`h-full rounded-full bg-gradient-to-r ${p.barColor}`} style={{ width: p.w }} />
             </div>
           </div>
         ))}
@@ -144,21 +141,23 @@ function PublishPlaceholder() {
 function ProgressPlaceholder() {
   return (
     <div className="flex h-full flex-col justify-center gap-3 p-5">
-      {[
-        { label: 'Instagram', badge: 'IG', color: 'from-pink-500 to-orange-400', status: 'Done ✓',       statusColor: 'text-emerald-500', pct: 100 },
-        { label: 'TikTok',    badge: 'TT', color: 'from-zinc-600 to-zinc-800',   status: 'Uploading 67%', statusColor: 'text-[var(--cf-muted)]',   pct: 67  },
-        { label: 'YouTube',   badge: 'YT', color: 'from-red-500 to-red-600',     status: 'Done ✓',       statusColor: 'text-emerald-500', pct: 100 },
-        { label: 'Facebook',  badge: 'FB', color: 'from-blue-600 to-blue-700',   status: 'Waiting…',     statusColor: 'text-[var(--cf-border)]',    pct: 0   },
-      ].map((p, i) => (
-        <div key={i} className="flex items-center gap-2">
-          <div className={`icon-hover flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${p.color} text-[8px] font-bold text-white`}>{p.badge}</div>
+      {(
+        [
+          { id: 'instagram' as PlatformId, label: 'Instagram', barColor: 'from-pink-500 to-orange-400', status: 'Done ✓',        statusColor: 'text-emerald-500',         pct: 100 },
+          { id: 'tiktok'    as PlatformId, label: 'TikTok',    barColor: 'from-zinc-600 to-zinc-800',   status: 'Uploading 67%',  statusColor: 'text-[var(--cf-muted)]',   pct: 67  },
+          { id: 'youtube'   as PlatformId, label: 'YouTube',   barColor: 'from-red-500 to-red-600',     status: 'Done ✓',        statusColor: 'text-emerald-500',         pct: 100 },
+          { id: 'facebook'  as PlatformId, label: 'Facebook',  barColor: 'from-blue-600 to-blue-700',   status: 'Waiting…',       statusColor: 'text-[var(--cf-border)]',  pct: 0   },
+        ]
+      ).map((p) => (
+        <div key={p.id} className="flex items-center gap-2">
+          <PlatformIcon id={p.id} size="sm" className="icon-hover h-6 w-6 shrink-0 rounded-md" />
           <div className="flex-1">
             <div className="mb-1 flex items-center justify-between">
               <span className="text-[10px] font-semibold text-[var(--cf-heading)]">{p.label}</span>
               <span className={`text-[9px] font-semibold ${p.statusColor}`}>{p.status}</span>
             </div>
             <div className="h-1 w-full overflow-hidden rounded-full bg-[var(--cf-border)]">
-              <div className={`h-full rounded-full bg-gradient-to-r ${p.color}`} style={{ width: `${p.pct}%` }} />
+              <div className={`h-full rounded-full bg-gradient-to-r ${p.barColor}`} style={{ width: `${p.pct}%` }} />
             </div>
           </div>
         </div>

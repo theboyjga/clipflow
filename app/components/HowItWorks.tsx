@@ -1,4 +1,6 @@
 import AnimateOnScroll from '@/app/components/AnimateOnScroll';
+import PlatformIcon from '@/app/components/ui/PlatformIcon';
+import type { PlatformId } from '@/app/types/clipflow';
 
 const steps = [
   { step: '01', title: 'Add your clip',      body: 'Upload an MP4 from your device or paste a public link from any short-form video platform.', illustration: <UploadIllustration /> },
@@ -74,16 +76,18 @@ function SelectIllustration() {
   return (
     <div className="flex h-full items-center justify-center px-6">
       <div className="grid w-full max-w-[240px] grid-cols-2 gap-2">
-        {[
-          { badge: 'IG', color: 'from-pink-500 to-orange-400', selected: true },
-          { badge: 'TT', color: 'from-zinc-600 to-zinc-800',   selected: true },
-          { badge: 'YT', color: 'from-red-500 to-red-700',     selected: false },
-          { badge: 'FB', color: 'from-blue-600 to-blue-800',   selected: true },
-          { badge: 'X',  color: 'from-zinc-800 to-black',      selected: false },
-          { badge: 'in', color: 'from-blue-700 to-blue-900',   selected: true },
-        ].map((p, i) => (
-          <div key={i} className={`flex items-center gap-2 rounded-xl p-2 ${p.selected ? 'border border-orange-200 bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20' : 'border border-[var(--cf-border)] bg-[var(--cf-card)]'}`}>
-            <div className={`icon-hover flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br ${p.color} text-[9px] font-bold text-white`}>{p.badge}</div>
+        {(
+          [
+            { id: 'instagram' as PlatformId, selected: true  },
+            { id: 'tiktok'    as PlatformId, selected: true  },
+            { id: 'youtube'   as PlatformId, selected: false },
+            { id: 'facebook'  as PlatformId, selected: true  },
+            { id: 'twitter'   as PlatformId, selected: false },
+            { id: 'linkedin'  as PlatformId, selected: true  },
+          ]
+        ).map((p) => (
+          <div key={p.id} className={`flex items-center gap-2 rounded-xl p-2 ${p.selected ? 'border border-orange-200 bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20' : 'border border-[var(--cf-border)] bg-[var(--cf-card)]'}`}>
+            <PlatformIcon id={p.id} size="md" className="icon-hover h-7 w-7 rounded-lg" />
             {p.selected && <div className="ml-auto flex h-4 w-4 items-center justify-center rounded-full bg-orange-500 text-[8px] text-white">✓</div>}
           </div>
         ))}
@@ -99,9 +103,9 @@ function LiveIllustration() {
         <div className="h-2 w-20 rounded-full bg-white/60" />
       </div>
       <div className="flex gap-3">
-        {['from-pink-500 to-orange-400', 'from-red-500 to-red-600', 'from-blue-600 to-blue-700', 'from-zinc-600 to-zinc-800'].map((c, i) => (
-          <div key={i} className="flex flex-col items-center gap-1.5">
-            <div className={`icon-hover h-9 w-9 rounded-xl bg-gradient-to-br ${c} shadow-sm`} />
+        {(['instagram', 'youtube', 'facebook', 'tiktok'] as PlatformId[]).map((id) => (
+          <div key={id} className="flex flex-col items-center gap-1.5">
+            <PlatformIcon id={id} size="lg" className="icon-hover rounded-xl shadow-sm" />
             <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 ring-2 ring-emerald-100 dark:ring-emerald-900/40" />
           </div>
         ))}
