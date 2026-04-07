@@ -34,7 +34,7 @@ const PLATFORM_STATS = [
 
 const RECENT_POSTS = [
   { title: 'Morning routine tips',  color: 'from-pink-400 to-orange-300',  views: '234K', likes: '12.4K', comments: '892',  shares: '3.2K', platforms: 4, ago: '2h' },
-  { title: 'Kitchen hack #47',      color: 'from-violet-400 to-blue-400',  views: '189K', likes: '9.1K',  comments: '567',  shares: '2.1K', platforms: 5, ago: '1d' },
+  { title: 'Kitchen hack #47',      color: 'from-orange-400 to-orange-600',  views: '189K', likes: '9.1K',  comments: '567',  shares: '2.1K', platforms: 5, ago: '1d' },
   { title: 'Travel vlog — Bali',    color: 'from-emerald-400 to-cyan-400', views: '156K', likes: '8.3K',  comments: '423',  shares: '1.8K', platforms: 3, ago: '3d' },
   { title: 'Product review 2025',   color: 'from-amber-400 to-orange-400', views: '112K', likes: '6.7K',  comments: '312',  shares: '987',  platforms: 4, ago: '5d' },
 ];
@@ -112,7 +112,7 @@ export default function AnalyticsSection() {
 
         {/* ── Section header ── */}
         <AnimateOnScroll>
-          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-violet-600">
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-orange-600">
             Analytics
           </p>
           <h2 className="mb-3 text-center text-4xl font-bold tracking-tight text-[var(--cf-heading)] sm:text-5xl">
@@ -144,7 +144,7 @@ export default function AnalyticsSection() {
                     onClick={() => setActiveTab(tab)}
                     className={`rounded-lg px-3 py-1.5 text-xs font-semibold capitalize transition-all ${
                       activeTab === tab
-                        ? 'bg-violet-600 text-white shadow-sm'
+                        ? 'bg-orange-600 text-white shadow-sm'
                         : 'text-[var(--cf-muted)] hover:text-[var(--cf-heading)]'
                     }`}
                   >
@@ -173,7 +173,7 @@ export default function AnalyticsSection() {
                         key={p}
                         onClick={() => setPeriod(p)}
                         className={`rounded-lg px-3 py-1 text-xs font-semibold transition-all ${
-                          period === p ? 'bg-violet-600 text-white' : 'text-[var(--cf-muted)] hover:text-[var(--cf-heading)]'
+                          period === p ? 'bg-orange-600 text-white' : 'text-[var(--cf-muted)] hover:text-[var(--cf-heading)]'
                         }`}
                       >
                         {p}
@@ -193,8 +193,8 @@ export default function AnalyticsSection() {
                   >
                     <defs>
                       <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%"   stopColor="#7c3aed" stopOpacity="0.28" />
-                        <stop offset="100%" stopColor="#7c3aed" stopOpacity="0.02" />
+                        <stop offset="0%"   stopColor="#c2410c" stopOpacity="0.28" />
+                        <stop offset="100%" stopColor="#c2410c" stopOpacity="0.02" />
                       </linearGradient>
                     </defs>
 
@@ -208,7 +208,7 @@ export default function AnalyticsSection() {
                     ))}
 
                     <path d={area} fill="url(#areaGrad)" />
-                    <path d={line} fill="none" stroke="#7c3aed" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d={line} fill="none" stroke="#c2410c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
 
                     {/* Interactive dots */}
                     {shownPts.map((pt, i) => (
@@ -216,7 +216,7 @@ export default function AnalyticsSection() {
                         key={i}
                         cx={pt.x} cy={pt.y}
                         r={hoveredIdx === i ? 5.5 : 3.5}
-                        fill={hoveredIdx === i ? '#7c3aed' : 'transparent'}
+                        fill={hoveredIdx === i ? '#c2410c' : 'transparent'}
                         stroke={hoveredIdx === i ? '#fff' : 'transparent'}
                         strokeWidth="2"
                         style={{ cursor: 'crosshair', transition: 'r 0.12s' }}
@@ -231,13 +231,13 @@ export default function AnalyticsSection() {
                         <line
                           x1={shownPts[hoveredIdx].x} y1={0}
                           x2={shownPts[hoveredIdx].x} y2={H}
-                          stroke="#7c3aed" strokeWidth="1" strokeDasharray="4 3" strokeOpacity="0.5"
+                          stroke="#c2410c" strokeWidth="1" strokeDasharray="4 3" strokeOpacity="0.5"
                         />
                         <rect
                           x={Math.min(shownPts[hoveredIdx].x - 26, W - 60)}
                           y={shownPts[hoveredIdx].y - 32}
                           width={52} height={22} rx={6}
-                          fill="#7c3aed"
+                          fill="#c2410c"
                         />
                         <text
                           x={Math.min(shownPts[hoveredIdx].x, W - 34)}

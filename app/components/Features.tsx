@@ -29,7 +29,7 @@ export default function Features() {
     <section id="features" className="bg-[var(--cf-page)] py-24 transition-colors duration-200">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <AnimateOnScroll>
-          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-violet-600">
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-orange-600">
             Why ClipFlow
           </p>
           <h2 className="mx-auto mb-16 max-w-2xl text-center text-4xl font-bold tracking-tight text-[var(--cf-heading)] sm:text-5xl">
@@ -81,14 +81,14 @@ function ImportPlaceholder() {
           </div>
         ))}
       </div>
-      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-violet-200 bg-violet-50 dark:border-violet-800 dark:bg-violet-900/30">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-violet-600" strokeLinecap="round" strokeLinejoin="round">
+      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-orange-200 bg-orange-50 dark:border-orange-800 dark:bg-orange-900/30">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-orange-600" strokeLinecap="round" strokeLinejoin="round">
           <line x1="12" y1="5" x2="12" y2="19" /><polyline points="19 12 12 19 5 12" />
         </svg>
       </div>
       <div className="flex w-full max-w-[180px] items-center gap-2.5 rounded-xl border border-[var(--cf-border)] bg-[var(--cf-card)] px-3 py-2.5 shadow-sm">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-violet-50 dark:bg-violet-900/30">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-violet-600" strokeLinecap="round" strokeLinejoin="round">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-orange-50 dark:bg-orange-900/30">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-orange-600" strokeLinecap="round" strokeLinejoin="round">
             <polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" />
           </svg>
         </div>
@@ -104,7 +104,7 @@ function ImportPlaceholder() {
 function PublishPlaceholder() {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4 p-5">
-      <div className="icon-bounce flex w-full max-w-[180px] items-center justify-center rounded-xl bg-gradient-to-r from-violet-600 to-blue-500 py-2.5 shadow-md shadow-violet-200 dark:shadow-violet-900/40">
+      <div className="icon-bounce flex w-full max-w-[180px] items-center justify-center rounded-xl bg-gradient-to-r from-orange-600 to-orange-800 py-2.5 shadow-md shadow-orange-200 dark:shadow-orange-900/40">
         <div className="h-2 w-24 rounded-full bg-white/60" />
       </div>
       <div className="flex w-full max-w-[200px] flex-col gap-2">

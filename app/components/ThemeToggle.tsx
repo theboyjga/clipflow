@@ -10,7 +10,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="group relative flex h-8 w-14 items-center rounded-full border border-[var(--cf-border)] bg-[var(--cf-section)] p-0.5 transition-all duration-300 hover:border-violet-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+      className="group relative flex h-8 w-14 items-center rounded-full border border-[var(--cf-border)] bg-[var(--cf-section)] p-0.5 transition-all duration-300 hover:border-orange-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
     >
       {/* Track icons */}
       <span aria-hidden="true" className={`absolute left-1.5 text-[11px] transition-opacity duration-200 ${isDark ? 'opacity-0' : 'opacity-100'}`}>
@@ -23,7 +23,7 @@ export default function ThemeToggle() {
       {/* Sliding knob */}
       <span
         className={`relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-black/5 transition-all duration-300 ${
-          isDark ? 'translate-x-[22px] bg-violet-600' : 'translate-x-0'
+          isDark ? 'translate-x-[22px] bg-orange-600' : 'translate-x-0'
         }`}
       >
         {isDark ? (

@@ -37,19 +37,19 @@ export default function Header() {
 
         {/* ── Logo ── */}
         <a href="/" className="flex items-center gap-2.5 group">
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-pink-500 shadow-lg shadow-violet-500/30 transition-transform duration-200 group-hover:scale-105">
+          <div className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-orange-700 shadow-lg shadow-orange-500/30 transition-transform duration-200 group-hover:scale-105">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" className="text-white">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             {/* glow ring */}
-            <div className="absolute inset-0 rounded-xl ring-2 ring-violet-400/0 transition-all duration-200 group-hover:ring-violet-400/40" />
+            <div className="absolute inset-0 rounded-xl ring-2 ring-orange-400/0 transition-all duration-200 group-hover:ring-orange-400/40" />
           </div>
           <span
             className={`text-[15px] font-bold tracking-tight transition-colors duration-300 ${
               isHeroDark ? 'text-white' : 'text-[var(--cf-heading)]'
             }`}
           >
-            Clip<span className="text-violet-400">Flow</span>
+            Clip<span className="text-orange-400">Flow</span>
           </span>
         </a>
 
@@ -79,7 +79,7 @@ export default function Header() {
           </a>
           <a
             href="#try"
-            className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-600 to-pink-500 px-4 py-1.5 text-[13px] font-bold text-white shadow-md shadow-violet-500/25 transition-all hover:from-violet-500 hover:to-pink-400 hover:shadow-violet-500/40 active:scale-95"
+            className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-orange-600 to-orange-800 px-4 py-1.5 text-[13px] font-bold text-white shadow-md shadow-orange-500/25 transition-all hover:from-orange-500 hover:to-orange-700 hover:shadow-orange-500/40 active:scale-95"
           >
             Get started
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

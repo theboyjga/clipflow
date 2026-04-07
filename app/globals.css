@@ -12,7 +12,7 @@
   --cf-body:    #425466;
   --cf-muted:   #697386;
   --cf-border:  #e6ebf1;
-  --cf-ring:    rgba(124, 58, 237, 0.4);
+  --cf-ring:    rgba(194, 65, 12, 0.4);
   --cf-shadow:  0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
   --cf-shadow-hover: 0 4px 8px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.1);
 }
@@ -25,7 +25,7 @@ html.dark {
   --cf-body:    #768390;
   --cf-muted:   #636e7b;
   --cf-border:  rgba(99,110,123,0.4);
-  --cf-ring:    rgba(167,139,250,0.5);
+  --cf-ring:    rgba(251,146,60,0.5);
   --cf-shadow:  0 2px 4px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.5);
   --cf-shadow-hover: 0 4px 8px rgba(0,0,0,0.5), 0 16px 40px rgba(0,0,0,0.6);
 }
@@ -35,8 +35,8 @@ html.dark {
   --color-foreground: var(--cf-heading);
   --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
   --font-mono: var(--font-dm-mono), monospace;
-  --color-brand-from: #8b5cf6;
-  --color-brand-to:   #ec4899;
+  --color-brand-from: #ea580c;
+  --color-brand-to:   #c2410c;
 }
 
 body {
@@ -173,9 +173,9 @@ html.dark .shimmer-placeholder::after {
   background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.06) 50%, transparent 70%);
 }
 
-/* Gradient text — violet → rose (distinct from IndiePost's blue) */
+/* Gradient text — orange → burnt orange */
 .gradient-text {
-  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 40%, #ec4899 100%);
+  background: linear-gradient(135deg, #fb923c 0%, #ea580c 40%, #c2410c 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -237,7 +237,7 @@ html.dark .glass {
 .gradient-border {
   background:
     linear-gradient(var(--cf-card), var(--cf-card)) padding-box,
-    linear-gradient(135deg, #7c3aed, #3b82f6, #7c3aed) border-box;
+    linear-gradient(135deg, #c2410c, #9a3412, #c2410c) border-box;
   border: 1px solid transparent;
   background-size: 200% 200%;
   animation: gradientX 4s ease infinite;

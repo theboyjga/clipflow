@@ -76,9 +76,9 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
         {activeTab === 'file' ? (
           <>
             {fileValue ? (
-              <div className="flex items-center justify-between rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 dark:border-violet-700 dark:bg-violet-900/20">
+              <div className="flex items-center justify-between rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 dark:border-orange-700 dark:bg-orange-900/20">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-100 text-violet-600 dark:bg-violet-800">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-orange-100 text-orange-600 dark:bg-orange-800">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
                     </svg>
@@ -106,20 +106,20 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
                 role="button"
                 tabIndex={0}
                 aria-label="Drop MP4 video here or click to browse"
-                className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed py-12 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 ${
+                className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed py-12 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
                   isDragging
-                    ? 'border-violet-400 bg-violet-50 dark:bg-violet-900/20'
-                    : 'border-[var(--cf-border)] hover:border-violet-300 hover:bg-violet-50/50 dark:hover:bg-violet-900/10'
+                    ? 'border-orange-400 bg-orange-50 dark:bg-orange-900/20'
+                    : 'border-[var(--cf-border)] hover:border-orange-300 hover:bg-orange-50/50 dark:hover:bg-orange-900/10'
                 }`}
               >
-                <div className={`flex h-12 w-12 items-center justify-center rounded-full transition-colors ${isDragging ? 'bg-violet-100 text-violet-600 dark:bg-violet-900/40' : 'bg-[var(--cf-section)] text-[var(--cf-muted)]'}`}>
+                <div className={`flex h-12 w-12 items-center justify-center rounded-full transition-colors ${isDragging ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/40' : 'bg-[var(--cf-section)] text-[var(--cf-muted)]'}`}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="16 16 12 12 8 16" /><line x1="12" y1="12" x2="12" y2="21" /><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
                   </svg>
                 </div>
                 <div className="text-center">
                   <p className="font-semibold text-[var(--cf-heading)]">Drop your MP4 here</p>
-                  <p className="mt-1 text-sm text-[var(--cf-muted)]">or <span className="text-violet-600 underline underline-offset-2">click to browse</span></p>
+                  <p className="mt-1 text-sm text-[var(--cf-muted)]">or <span className="text-orange-600 underline underline-offset-2">click to browse</span></p>
                 </div>
               </div>
             )}
@@ -135,7 +135,7 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
                 value={urlInput}
                 onChange={(e) => handleUrlChange(e.target.value)}
                 placeholder={hintPlatform ? SOURCE_PLATFORMS.find(s => s.id === hintPlatform)?.placeholder : 'Paste a link from Facebook, Instagram, TikTok, or YouTube'}
-                className="w-full rounded-xl border border-[var(--cf-border)] bg-[var(--cf-card)] px-4 py-3 text-sm text-[var(--cf-heading)] placeholder-[var(--cf-muted)] outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-100 dark:focus:ring-violet-900/40"
+                className="w-full rounded-xl border border-[var(--cf-border)] bg-[var(--cf-card)] px-4 py-3 text-sm text-[var(--cf-heading)] placeholder-[var(--cf-muted)] outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100 dark:focus:ring-orange-900/40"
               />
               {urlError && <p role="alert" className="mt-2 text-xs font-medium text-red-500">{urlError}</p>}
               {urlValue && !urlError && (
@@ -151,8 +151,8 @@ export default function UploadZone({ value, onChange }: UploadZoneProps) {
                   onClick={() => setHintPlatform(hintPlatform === sp.id ? null : sp.id)}
                   className={`group flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all ${
                     hintPlatform === sp.id
-                      ? 'border-violet-300 bg-violet-50 text-violet-700 dark:border-violet-700 dark:bg-violet-900/30 dark:text-violet-300'
-                      : 'border-[var(--cf-border)] text-[var(--cf-muted)] hover:border-violet-200 hover:text-[var(--cf-body)]'
+                      ? 'border-orange-300 bg-orange-50 text-orange-700 dark:border-orange-700 dark:bg-orange-900/30 dark:text-orange-300'
+                      : 'border-[var(--cf-border)] text-[var(--cf-muted)] hover:border-orange-200 hover:text-[var(--cf-body)]'
                   }`}
                 >
                   <span className={`platform-icon flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold text-white ${sp.badgeClass}`}>

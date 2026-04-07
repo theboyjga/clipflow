@@ -11,7 +11,7 @@ export default function HowItWorks() {
     <section id="how-it-works" className="bg-[var(--cf-section)] py-28 transition-colors duration-200">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <AnimateOnScroll>
-          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-violet-600">How it works</p>
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-orange-600">How it works</p>
           <h2 className="mx-auto mb-20 max-w-xl text-center text-4xl font-bold tracking-tight text-[var(--cf-heading)] sm:text-5xl">
             Three steps to everywhere
           </h2>
@@ -50,9 +50,9 @@ function StepCard({ step, title, body, illustration }: {
 function UploadIllustration() {
   return (
     <div className="flex h-full items-center justify-center">
-      <div className="relative mx-6 flex h-32 w-full max-w-[240px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-violet-300 bg-violet-50 dark:border-violet-700 dark:bg-violet-900/20">
-        <div className="icon-bounce flex h-10 w-10 items-center justify-center rounded-full bg-violet-100 ring-8 ring-violet-50 dark:bg-violet-800 dark:ring-violet-900/30">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-violet-600" strokeLinecap="round" strokeLinejoin="round">
+      <div className="relative mx-6 flex h-32 w-full max-w-[240px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-orange-300 bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20">
+        <div className="icon-bounce flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 ring-8 ring-orange-50 dark:bg-orange-800 dark:ring-orange-900/30">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-orange-600" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="16 16 12 12 8 16" /><line x1="12" y1="12" x2="12" y2="21" />
             <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
           </svg>
@@ -62,7 +62,7 @@ function UploadIllustration() {
           <div className="mx-auto h-1.5 w-16 rounded-full bg-[var(--cf-section)]" />
         </div>
         <div className="absolute -right-8 -top-4 flex items-center gap-1.5 rounded-xl border border-[var(--cf-border)] bg-[var(--cf-card)] px-2.5 py-1.5 shadow-md">
-          <div className="h-4 w-4 rounded bg-violet-100 dark:bg-violet-900/40" />
+          <div className="h-4 w-4 rounded bg-orange-100 dark:bg-orange-900/40" />
           <div className="h-1.5 w-12 rounded-full bg-[var(--cf-border)]" />
         </div>
       </div>
@@ -82,9 +82,9 @@ function SelectIllustration() {
           { badge: 'X',  color: 'from-zinc-800 to-black',      selected: false },
           { badge: 'in', color: 'from-blue-700 to-blue-900',   selected: true },
         ].map((p, i) => (
-          <div key={i} className={`flex items-center gap-2 rounded-xl p-2 ${p.selected ? 'border border-violet-200 bg-violet-50 dark:border-violet-700 dark:bg-violet-900/20' : 'border border-[var(--cf-border)] bg-[var(--cf-card)]'}`}>
+          <div key={i} className={`flex items-center gap-2 rounded-xl p-2 ${p.selected ? 'border border-orange-200 bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20' : 'border border-[var(--cf-border)] bg-[var(--cf-card)]'}`}>
             <div className={`icon-hover flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br ${p.color} text-[9px] font-bold text-white`}>{p.badge}</div>
-            {p.selected && <div className="ml-auto flex h-4 w-4 items-center justify-center rounded-full bg-violet-500 text-[8px] text-white">✓</div>}
+            {p.selected && <div className="ml-auto flex h-4 w-4 items-center justify-center rounded-full bg-orange-500 text-[8px] text-white">✓</div>}
           </div>
         ))}
       </div>
@@ -95,7 +95,7 @@ function SelectIllustration() {
 function LiveIllustration() {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4 px-6">
-      <div className="icon-bounce flex w-full max-w-[200px] items-center justify-center rounded-xl bg-gradient-to-r from-violet-600 to-blue-500 py-2.5 shadow-md shadow-violet-200 dark:shadow-violet-900/40">
+      <div className="icon-bounce flex w-full max-w-[200px] items-center justify-center rounded-xl bg-gradient-to-r from-orange-600 to-orange-800 py-2.5 shadow-md shadow-orange-200 dark:shadow-orange-900/40">
         <div className="h-2 w-20 rounded-full bg-white/60" />
       </div>
       <div className="flex gap-3">

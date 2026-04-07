@@ -65,7 +65,7 @@ export default function PublishStatus({ steps, phase, onReset }: PublishStatusPr
       {phase === 'complete' && (
         <button
           onClick={onReset}
-          className="w-full rounded-xl border border-[var(--cf-border)] bg-[var(--cf-card)] py-3 text-sm font-semibold text-[var(--cf-body)] shadow-sm transition-all hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700 dark:hover:bg-violet-900/20 dark:hover:border-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+          className="w-full rounded-xl border border-[var(--cf-border)] bg-[var(--cf-card)] py-3 text-sm font-semibold text-[var(--cf-body)] shadow-sm transition-all hover:border-orange-300 hover:bg-orange-50 hover:text-orange-700 dark:hover:bg-orange-900/20 dark:hover:border-orange-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
         >
           Publish another clip
         </button>

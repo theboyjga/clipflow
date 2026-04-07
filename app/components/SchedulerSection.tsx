@@ -32,7 +32,7 @@ type ScheduledPost = {
 };
 
 const SCHEDULED: Record<number, ScheduledPost[]> = {
-  7:  [{ title: 'Morning workout tips',  time: '9:00 AM',  platforms: ['IG','YT','TT'],       color: 'from-violet-500 to-blue-500'    }],
+  7:  [{ title: 'Morning workout tips',  time: '9:00 AM',  platforms: ['IG','YT','TT'],       color: 'from-orange-500 to-orange-700'  }],
   9:  [{ title: 'Recipe video #12',      time: '2:00 PM',  platforms: ['IG','FB'],             color: 'from-pink-500 to-orange-400'    }],
   12: [
         { title: 'Weekend vlog',         time: '11:00 AM', platforms: ['YT','IG','TT','FB'],   color: 'from-emerald-500 to-cyan-500'   },
@@ -40,7 +40,7 @@ const SCHEDULED: Record<number, ScheduledPost[]> = {
       ],
   15: [{ title: 'Product unboxing',      time: '3:00 PM',  platforms: ['YT','IG','TT','FB','LI'], color: 'from-rose-500 to-pink-500'  }],
   18: [{ title: 'Behind the scenes',     time: '12:00 PM', platforms: ['IG','TT'],             color: 'from-blue-500 to-indigo-500'   }],
-  22: [{ title: 'Tutorial series ep.4',  time: '10:00 AM', platforms: ['YT','IG','TT'],        color: 'from-violet-500 to-purple-600' }],
+  22: [{ title: 'Tutorial series ep.4',  time: '10:00 AM', platforms: ['YT','IG','TT'],        color: 'from-orange-500 to-orange-700' }],
   25: [{ title: 'Monthly recap',         time: '4:00 PM',  platforms: ['IG','YT','FB','LI'],   color: 'from-teal-500 to-emerald-500'  }],
   28: [{ title: 'Collab with @creator',  time: '2:00 PM',  platforms: ['IG','TT','YT'],        color: 'from-fuchsia-500 to-pink-500'  }],
 };
@@ -111,7 +111,7 @@ export default function SchedulerSection() {
 
         {/* ── Section header ── */}
         <AnimateOnScroll>
-          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-violet-600">
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-orange-600">
             Scheduler
           </p>
           <h2 className="mb-3 text-center text-4xl font-bold tracking-tight text-[var(--cf-heading)] sm:text-5xl">
@@ -136,7 +136,7 @@ export default function SchedulerSection() {
                 <div className="h-3 w-3 rounded-full bg-emerald-400" />
                 <span className="ml-3 text-sm font-semibold text-[var(--cf-heading)]">Content Scheduler</span>
               </div>
-              <button className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-violet-600 to-blue-500 px-4 py-1.5 text-xs font-semibold text-white shadow-sm transition-all hover:from-violet-500 hover:to-blue-400">
+              <button className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-800 px-4 py-1.5 text-xs font-semibold text-white shadow-sm transition-all hover:from-orange-500 hover:to-orange-700">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 5v14M5 12h14" />
                 </svg>
@@ -197,11 +197,11 @@ export default function SchedulerSection() {
                       <button
                         key={day}
                         onClick={() => setSelectedDay(day)}
-                        className={`relative flex flex-col items-center rounded-lg px-1 py-1.5 text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 ${
+                        className={`relative flex flex-col items-center rounded-lg px-1 py-1.5 text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
                           isSelected
-                            ? 'bg-violet-600 text-white shadow-md'
+                            ? 'bg-orange-600 text-white shadow-md'
                             : isToday
-                            ? 'border border-violet-400 font-semibold text-violet-600'
+                            ? 'border border-orange-400 font-semibold text-orange-600'
                             : isPast
                             ? 'text-[var(--cf-border)] hover:bg-[var(--cf-section)]'
                             : 'text-[var(--cf-heading)] hover:bg-[var(--cf-section)]'
@@ -214,7 +214,7 @@ export default function SchedulerSection() {
                             {Array.from({ length: Math.min(postCount, 3) }).map((_, j) => (
                               <div
                                 key={j}
-                                className={`h-1 w-1 rounded-full ${isSelected ? 'bg-white/70' : 'bg-violet-500'}`}
+                                className={`h-1 w-1 rounded-full ${isSelected ? 'bg-white/70' : 'bg-orange-500'}`}
                               />
                             ))}
                           </div>
@@ -227,9 +227,9 @@ export default function SchedulerSection() {
                 {/* Legend */}
                 <div className="mt-5 flex flex-wrap gap-4 border-t border-[var(--cf-border)] pt-4">
                   {[
-                    { color: 'bg-violet-600', label: 'Selected' },
-                    { color: 'border border-violet-400', label: 'Today' },
-                    { color: 'bg-violet-500', label: 'Has posts' },
+                    { color: 'bg-orange-600', label: 'Selected' },
+                    { color: 'border border-orange-400', label: 'Today' },
+                    { color: 'bg-orange-500', label: 'Has posts' },
                   ].map((l) => (
                     <div key={l.label} className="flex items-center gap-1.5">
                       <div className={`h-2.5 w-2.5 rounded-full ${l.color}`} />
@@ -248,7 +248,7 @@ export default function SchedulerSection() {
                       <p className="text-sm font-bold text-[var(--cf-heading)]">
                         {MONTH_NAMES[month]} {selectedDay}
                       </p>
-                      <span className="rounded-full bg-violet-100 px-2.5 py-0.5 text-xs font-semibold text-violet-700 dark:bg-violet-900/30 dark:text-violet-300">
+                      <span className="rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-700 dark:bg-orange-900/30 dark:text-orange-300">
                         {selectedPosts.length} post{selectedPosts.length > 1 ? 's' : ''}
                       </span>
                     </div>
@@ -257,7 +257,7 @@ export default function SchedulerSection() {
                         <PostCard key={i} post={post} />
                       ))}
                     </div>
-                    <button className="mt-4 w-full rounded-xl border-2 border-dashed border-[var(--cf-border)] py-3 text-xs font-semibold text-[var(--cf-muted)] transition-all hover:border-violet-300 hover:text-violet-600">
+                    <button className="mt-4 w-full rounded-xl border-2 border-dashed border-[var(--cf-border)] py-3 text-xs font-semibold text-[var(--cf-muted)] transition-all hover:border-orange-300 hover:text-orange-600">
                       + Add another post
                     </button>
                   </>
@@ -280,7 +280,7 @@ export default function SchedulerSection() {
                         <p className="text-sm font-semibold text-[var(--cf-heading)]">No posts scheduled</p>
                         <p className="mt-0.5 text-xs text-[var(--cf-muted)]">Click a day with dots to view scheduled posts</p>
                       </div>
-                      <button className="rounded-lg bg-gradient-to-r from-violet-600 to-blue-500 px-4 py-1.5 text-xs font-semibold text-white shadow-sm transition-all hover:from-violet-500 hover:to-blue-400">
+                      <button className="rounded-lg bg-gradient-to-r from-orange-600 to-orange-800 px-4 py-1.5 text-xs font-semibold text-white shadow-sm transition-all hover:from-orange-500 hover:to-orange-700">
                         Schedule a post
                       </button>
                     </div>
@@ -296,7 +296,7 @@ export default function SchedulerSection() {
                             <button
                               key={i}
                               onClick={() => setSelectedDay(post.day)}
-                              className="flex w-full items-center gap-2.5 rounded-xl border border-[var(--cf-border)] p-2.5 text-left transition-all hover:border-violet-300 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+                              className="flex w-full items-center gap-2.5 rounded-xl border border-[var(--cf-border)] p-2.5 text-left transition-all hover:border-orange-300 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
                               style={{ background: 'var(--cf-page)' }}
                             >
                               <div className={`h-9 w-1.5 shrink-0 rounded-full bg-gradient-to-b ${post.color}`} />

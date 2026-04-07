@@ -76,7 +76,7 @@ export default function Home() {
       <section id="try" className="py-28 transition-colors duration-200" style={{ background: 'var(--cf-page)' }}>
         <div className="mx-auto max-w-2xl px-5 sm:px-8">
           <AnimateOnScroll>
-            <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-violet-600">
+            <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-orange-600">
               Try it now
             </p>
             <h2 className="mb-3 text-center text-4xl font-bold tracking-tight text-[var(--cf-heading)] sm:text-5xl">
@@ -122,7 +122,7 @@ export default function Home() {
       <footer className="border-t border-[var(--cf-border)] py-10 transition-colors duration-200" style={{ background: 'var(--cf-section)' }}>
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 sm:flex-row sm:px-8">
           <div className="flex items-center gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-violet-600 to-blue-500 shadow-sm">
+            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-orange-600 to-orange-800 shadow-sm">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" className="text-white">
                 <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

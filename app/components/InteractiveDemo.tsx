@@ -44,7 +44,7 @@ export default function InteractiveDemo() {
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
         {/* Header */}
         <div className="mb-12 text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-600">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-orange-600">
             Live demo
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-[var(--cf-heading)] sm:text-5xl">
@@ -86,12 +86,12 @@ export default function InteractiveDemo() {
                 onClick={() => goTo(s)}
                 className={`flex flex-1 items-center justify-center gap-2 py-3 text-sm font-semibold transition-colors ${
                   step === s
-                    ? 'border-b-2 border-violet-600 text-violet-600'
+                    ? 'border-b-2 border-orange-600 text-orange-600'
                     : 'text-[var(--cf-muted)] hover:text-[var(--cf-body)]'
                 }`}
               >
                 <span className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${
-                  step === s ? 'bg-violet-600 text-white' : 'bg-[var(--cf-section)] text-[var(--cf-muted)]'
+                  step === s ? 'bg-orange-600 text-white' : 'bg-[var(--cf-section)] text-[var(--cf-muted)]'
                 }`}>{i + 1}</span>
                 {s}
               </button>
@@ -115,7 +115,7 @@ export default function InteractiveDemo() {
                   onClick={() => goTo(s)}
                   aria-label={`Go to step: ${s}`}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    step === s ? 'w-5 bg-violet-600' : 'w-2 bg-[var(--cf-border)] hover:bg-[var(--cf-muted)]'
+                    step === s ? 'w-5 bg-orange-600' : 'w-2 bg-[var(--cf-border)] hover:bg-[var(--cf-muted)]'
                   }`}
                 />
               ))}
@@ -127,7 +127,7 @@ export default function InteractiveDemo() {
                 onClick={() => setAutoPlay((p) => !p)}
                 className="flex items-center gap-1.5 text-xs font-medium text-[var(--cf-muted)] transition-colors hover:text-[var(--cf-body)]"
               >
-                <span className={`flex h-3 w-3 items-center justify-center rounded-full border ${autoPlay ? 'border-violet-500 bg-violet-500' : 'border-[var(--cf-border)]'}`}>
+                <span className={`flex h-3 w-3 items-center justify-center rounded-full border ${autoPlay ? 'border-orange-500 bg-orange-500' : 'border-[var(--cf-border)]'}`}>
                   {autoPlay && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                 </span>
                 Auto-play
@@ -135,7 +135,7 @@ export default function InteractiveDemo() {
               {/* Next button */}
               <button
                 onClick={() => { setAutoPlay(false); advance(); }}
-                className="flex items-center gap-1 rounded-full bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white transition-all hover:bg-violet-500 active:scale-95"
+                className="flex items-center gap-1 rounded-full bg-orange-600 px-3 py-1.5 text-xs font-semibold text-white transition-all hover:bg-orange-500 active:scale-95"
               >
                 {stepIndex === 2 ? 'Restart' : 'Next'}
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -148,7 +148,7 @@ export default function InteractiveDemo() {
 
         {/* CTA below */}
         <div className="mt-8 text-center">
-          <a href="#try" className="text-sm font-semibold text-violet-600 underline underline-offset-4 transition-colors hover:text-violet-500">
+          <a href="#try" className="text-sm font-semibold text-orange-600 underline underline-offset-4 transition-colors hover:text-orange-500">
             Try it yourself with your own video →
           </a>
         </div>
@@ -187,7 +187,7 @@ function ImportStep() {
           { badge: 'YT', label: 'YouTube', color: 'from-red-500 to-red-600', active: false },
           { badge: 'FB', label: 'Facebook', color: 'from-blue-600 to-blue-700', active: false },
         ].map((p) => (
-          <div key={p.badge} className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all ${p.active ? 'border-violet-300 bg-violet-50 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300' : 'border-[var(--cf-border)] text-[var(--cf-muted)]'}`}>
+          <div key={p.badge} className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-all ${p.active ? 'border-orange-300 bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300' : 'border-[var(--cf-border)] text-[var(--cf-muted)]'}`}>
             <span className={`flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br ${p.color} text-[9px] font-bold text-white`}>{p.badge[0]}</span>
             {p.label}
           </div>
@@ -196,14 +196,14 @@ function ImportStep() {
 
       {/* URL input with typewriter */}
       <div className="relative">
-        <div className={`flex items-center gap-2 rounded-xl border-2 px-4 py-3 transition-all ${matched ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' : 'border-violet-400 bg-[var(--cf-card)]'}`}>
+        <div className={`flex items-center gap-2 rounded-xl border-2 px-4 py-3 transition-all ${matched ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' : 'border-orange-400 bg-[var(--cf-card)]'}`}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`shrink-0 ${matched ? 'text-emerald-500' : 'text-[var(--cf-muted)]'}`} strokeLinecap="round" strokeLinejoin="round">
             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
           </svg>
           <span className="flex-1 text-sm font-mono text-[var(--cf-body)]">
             {FAKE_URL.slice(0, typed)}
-            {typed < FAKE_URL.length && <span className="inline-block w-px animate-pulse bg-violet-500">&nbsp;</span>}
+            {typed < FAKE_URL.length && <span className="inline-block w-px animate-pulse bg-orange-500">&nbsp;</span>}
           </span>
           {matched && <span className="text-xs font-semibold text-emerald-600">✓ TikTok</span>}
         </div>
@@ -249,8 +249,8 @@ function SelectStep() {
               })}
               className={`flex items-center gap-2.5 rounded-xl border p-3 text-left transition-all duration-300 ${
                 isSelected
-                  ? 'border-violet-300 bg-violet-50 shadow-sm shadow-violet-100 dark:bg-violet-900/20 dark:border-violet-700'
-                  : 'border-[var(--cf-border)] bg-[var(--cf-card)] hover:border-violet-200'
+                  ? 'border-orange-300 bg-orange-50 shadow-sm shadow-orange-100 dark:bg-orange-900/20 dark:border-orange-700'
+                  : 'border-[var(--cf-border)] bg-[var(--cf-card)] hover:border-orange-200'
               }`}
             >
               <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${p.color} text-[10px] font-bold text-white shadow-sm`}>
@@ -260,7 +260,7 @@ function SelectStep() {
                 <p className="truncate text-xs font-semibold text-[var(--cf-heading)]">{p.label}</p>
               </div>
               {isSelected && (
-                <div className="ml-auto flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-violet-500 text-[9px] font-bold text-white">✓</div>
+                <div className="ml-auto flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-orange-500 text-[9px] font-bold text-white">✓</div>
               )}
             </button>
           );
@@ -268,7 +268,7 @@ function SelectStep() {
       </div>
 
       {selected.size > 0 && (
-        <p className="animate-step-in text-center text-sm font-semibold text-violet-600">
+        <p className="animate-step-in text-center text-sm font-semibold text-orange-600">
           {selected.size} platform{selected.size !== 1 ? 's' : ''} selected — ready to publish!
         </p>
       )}

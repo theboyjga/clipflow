@@ -3,8 +3,8 @@ export default function Hero() {
     <section className="hero-dark relative overflow-hidden">
       {/* ── Vivid gradient glow blobs ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        {/* Left violet glow */}
-        <div className="animate-blob-pulse absolute -left-48 -top-24 h-[700px] w-[700px] rounded-full bg-violet-700/40 blur-[130px]" />
+        {/* Left orange glow */}
+        <div className="animate-blob-pulse absolute -left-48 -top-24 h-[700px] w-[700px] rounded-full bg-orange-700/40 blur-[130px]" />
         {/* Right rose/pink glow */}
         <div className="animate-blob-pulse delay-300 absolute -right-32 top-8 h-[600px] w-[600px] rounded-full bg-pink-600/30 blur-[120px]" />
         {/* Bottom cyan accent */}
@@ -49,7 +49,7 @@ export default function Hero() {
             <div className="animate-fade-in-up delay-300 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href="#try"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-pink-500 px-7 py-3 text-[0.9rem] font-bold text-white shadow-xl shadow-violet-700/40 transition-all hover:from-violet-400 hover:to-pink-400 hover:shadow-violet-600/50 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-700 px-7 py-3 text-[0.9rem] font-bold text-white shadow-xl shadow-orange-700/40 transition-all hover:from-orange-400 hover:to-orange-600 hover:shadow-orange-600/50 active:scale-95"
               >
                 Start publishing free
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -67,7 +67,7 @@ export default function Hero() {
             {/* Social proof */}
             <div className="animate-fade-in delay-500 mt-10 flex items-center gap-3">
               <div className="flex -space-x-2">
-                {['bg-violet-400', 'bg-pink-400', 'bg-emerald-400', 'bg-amber-400'].map((c, i) => (
+                {['bg-orange-400', 'bg-orange-600', 'bg-emerald-400', 'bg-amber-400'].map((c, i) => (
                   <div key={i} className={`h-7 w-7 rounded-full border-2 border-[#07040f] ${c}`} />
                 ))}
               </div>
@@ -111,7 +111,7 @@ function DeviceMockup() {
   return (
     <div className="relative">
       {/* Glow behind phone */}
-      <div className="absolute inset-8 rounded-[48px] bg-violet-500/20 blur-3xl" />
+      <div className="absolute inset-8 rounded-[48px] bg-orange-500/20 blur-3xl" />
 
       {/* Phone frame */}
       <div
@@ -133,7 +133,7 @@ function DeviceMockup() {
         <div className="space-y-3 px-4 pb-4 pt-2">
           <div className="flex items-center justify-between py-1">
             <div className="flex items-center gap-1.5">
-              <div className="h-5 w-5 rounded-md bg-gradient-to-br from-violet-500 to-pink-500" />
+              <div className="h-5 w-5 rounded-md bg-gradient-to-br from-orange-500 to-orange-700" />
               <span className="text-xs font-bold text-white/80">ClipFlow</span>
             </div>
             <div className="h-6 w-6 rounded-full bg-white/10" />
@@ -141,11 +141,11 @@ function DeviceMockup() {
 
           {/* Upload area */}
           <div
-            className="flex h-[104px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-violet-500/40"
-            style={{ background: 'rgba(139,92,246,0.08)' }}
+            className="flex h-[104px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-orange-500/40"
+            style={{ background: 'rgba(234,88,12,0.08)' }}
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-violet-500/20">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-violet-400" strokeLinecap="round" strokeLinejoin="round">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-500/20">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-orange-400" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="16 16 12 12 8 16" /><line x1="12" y1="12" x2="12" y2="21" />
                 <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
               </svg>
@@ -175,7 +175,7 @@ function DeviceMockup() {
             </div>
           ))}
 
-          <div className="flex h-9 items-center justify-center rounded-xl bg-gradient-to-r from-violet-600 to-pink-500 shadow-lg shadow-violet-700/30">
+          <div className="flex h-9 items-center justify-center rounded-xl bg-gradient-to-r from-orange-600 to-orange-800 shadow-lg shadow-orange-700/30">
             <div className="h-1.5 w-16 rounded-full bg-white/60" />
           </div>
         </div>
