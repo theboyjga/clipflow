@@ -1,26 +1,308 @@
 @import "tailwindcss";
 
+/* ─── Dark-mode class strategy ───────────────────── */
+@variant dark (&:where(.dark, .dark *));
+
+/* ─── Design tokens ──────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cf-page:    #ffffff;
+  --cf-section: #f6f9fc;
+  --cf-card:    #ffffff;
+  --cf-heading: #0a2540;
+  --cf-body:    #425466;
+  --cf-muted:   #697386;
+  --cf-border:  #e6ebf1;
+  --cf-ring:    rgba(194, 65, 12, 0.4);
+  --cf-shadow:  0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  --cf-shadow-hover: 0 4px 8px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.1);
+}
+
+html.dark {
+  --cf-page:    #0d1117;
+  --cf-section: #161b22;
+  --cf-card:    #21262d;
+  --cf-heading: #cdd9e5;
+  --cf-body:    #768390;
+  --cf-muted:   #636e7b;
+  --cf-border:  rgba(99,110,123,0.4);
+  --cf-ring:    rgba(251,146,60,0.5);
+  --cf-shadow:  0 2px 4px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.5);
+  --cf-shadow-hover: 0 4px 8px rgba(0,0,0,0.5), 0 16px 40px rgba(0,0,0,0.6);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--cf-page);
+  --color-foreground: var(--cf-heading);
+  --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), monospace;
+  --color-brand-from: #ea580c;
+  --color-brand-to:   #c2410c;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cf-page);
+  color: var(--cf-heading);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s ease, color 0.2s ease;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Icon hover animations (Stripe-style) ───────── */
+
+@keyframes iconWiggle {
+  0%   { transform: rotate(0deg)   scale(1); }
+  15%  { transform: rotate(-12deg) scale(1.12); }
+  30%  { transform: rotate(9deg)   scale(1.08); }
+  45%  { transform: rotate(-6deg)  scale(1.05); }
+  60%  { transform: rotate(4deg)   scale(1.02); }
+  75%  { transform: rotate(-2deg)  scale(1.01); }
+  100% { transform: rotate(0deg)   scale(1); }
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0)     scale(1); }
+  25%       { transform: translateY(-10px) scale(1.06); }
+  50%       { transform: translateY(-4px)  scale(1.03); }
+  75%       { transform: translateY(-8px)  scale(1.05); }
+}
+
+@keyframes iconPop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.22); }
+  65%  { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+
+/* Staggered icon animation within .group on hover */
+.group:hover .icon-hover              { animation: iconWiggle 0.55s cubic-bezier(0.36,0.07,0.19,0.97) both; }
+.group:hover .icon-hover:nth-child(2) { animation-delay: 55ms; }
+.group:hover .icon-hover:nth-child(3) { animation-delay: 110ms; }
+.group:hover .icon-hover:nth-child(4) { animation-delay: 165ms; }
+.group:hover .icon-hover:nth-child(5) { animation-delay: 220ms; }
+.group:hover .icon-hover:nth-child(6) { animation-delay: 275ms; }
+.group:hover .icon-bounce             { animation: iconBounce 0.55s cubic-bezier(0.36,0.07,0.19,0.97) both; }
+.group:hover .icon-pop                { animation: iconPop    0.4s  cubic-bezier(0.36,0.07,0.19,0.97) both; }
+
+/* Platform pill hover */
+.platform-pill:hover .platform-icon { animation: iconWiggle 0.5s cubic-bezier(0.36,0.07,0.19,0.97) both; }
+
+/* ─── Page animations ────────────────────────────── */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px)   rotate(0deg); }
+  33%       { transform: translateY(-10px) rotate(1deg); }
+  66%       { transform: translateY(-5px)  rotate(-1deg); }
+}
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(8px) rotate(-1deg); }
+  66%       { transform: translateY(3px) rotate(1deg); }
+}
+@keyframes blobPulse {
+  0%, 100% { transform: scale(1) translate(0,0);     opacity: 0.6; }
+  33%       { transform: scale(1.06) translate(2%,-2%); opacity: 0.8; }
+  66%       { transform: scale(0.96) translate(-1%,1%); opacity: 0.5; }
+}
+@keyframes shimmer {
+  0%   { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(200%)  skewX(-12deg); }
+}
+@keyframes progressFill {
+  from { width: 0%; }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes gradientX {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes stepIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Utility classes ────────────────────────────── */
+
+.animate-fade-in-up    { animation: fadeInUp    0.7s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-fade-in       { animation: fadeIn      0.6s ease both; }
+.animate-float         { animation: float       6s ease-in-out infinite; }
+.animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
+.animate-blob-pulse    { animation: blobPulse   8s ease-in-out infinite; }
+.animate-slide-in-right{ animation: slideInRight 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-step-in       { animation: stepIn      0.4s cubic-bezier(0.16,1,0.3,1) both; }
+
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* Shimmer placeholder */
+.shimmer-placeholder            { position: relative; overflow: hidden; }
+.shimmer-placeholder::after     {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+html.dark .shimmer-placeholder::after {
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.06) 50%, transparent 70%);
+}
+
+/* Gradient text — orange → burnt orange */
+.gradient-text {
+  background: linear-gradient(135deg, #fb923c 0%, #ea580c 40%, #c2410c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Glassmorphism nav / card */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+html.dark .glass {
+  background: rgba(13, 17, 23, 0.75);
+  border-bottom: 1px solid rgba(99,110,123,0.25);
+}
+
+/* Hero always-dark section */
+.hero-dark {
+  background: #07040f;
+  position: relative;
+}
+
+/* Nav pill active / hover */
+.nav-pill {
+  position: relative;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color 0.18s, background 0.18s;
+  color: rgba(255,255,255,0.65);
+}
+.nav-pill:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+.nav-pill.light {
+  color: var(--cf-body);
+}
+.nav-pill.light:hover {
+  color: var(--cf-heading);
+  background: var(--cf-section);
+}
+
+/* Card shadow (lift on hover) */
+.card-shadow {
+  box-shadow: var(--cf-shadow);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-shadow:hover {
+  box-shadow: var(--cf-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* ─── Auth / Dashboard utilities ────────────────── */
+
+/* Text input field — used in auth forms */
+.auth-field {
+  display: block;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--cf-border);
+  background: var(--cf-card);
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  color: var(--cf-heading);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.auth-field::placeholder { color: var(--cf-muted); }
+.auth-field:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+}
+html.dark .auth-field:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
+}
+
+/* Primary black CTA button — auth pages */
+.btn-auth-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: #000;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.btn-auth-primary:hover   { background: #1a1a1a; }
+html.dark .btn-auth-primary { background: #fff; color: #000; }
+html.dark .btn-auth-primary:hover { background: #e5e5e5; }
+
+/* ─── Dashboard sidebar ──────────────────────────── */
+.dash-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cf-body);
+  transition: background 0.15s, color 0.15s;
+}
+.dash-nav-item:hover {
+  background: var(--cf-section);
+  color: var(--cf-heading);
+}
+.dash-nav-item.active {
+  background: var(--cf-section);
+  color: var(--cf-heading);
+}
+
+/* Animated gradient border for upload card */
+.gradient-border {
+  background:
+    linear-gradient(var(--cf-card), var(--cf-card)) padding-box,
+    linear-gradient(135deg, #c2410c, #9a3412, #c2410c) border-box;
+  border: 1px solid transparent;
+  background-size: 200% 200%;
+  animation: gradientX 4s ease infinite;
 }
